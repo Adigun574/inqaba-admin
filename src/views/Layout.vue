@@ -13,7 +13,10 @@
       <button id="toggle-button">Toggle</button>
     </div>
 
-    <div id="content-body" style="color: black">ksdnclknsdcljksdncjndjsckljdcnilcjkdncjdskclnjdncj</div>
+    <div id="content-body" style="color: black">
+        
+        ksdnclknsdcljksdncjndjsckljdcnilcjkdncjdskclnjdncj
+    </div>
   </div>
 
   <!-- <div class="full-app">
@@ -51,10 +54,9 @@ export default {
   methods: {
     test(){
         console.log('test')
-        this.setSidebar()
+        // this.setSidebar()
     },
     setSidebar() {
-        console.log('okay')
       const sidebar = document.getElementById("main-sidebar");
 
       document.getElementById("toggle-button").addEventListener("click", () => {

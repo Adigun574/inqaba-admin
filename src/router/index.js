@@ -17,6 +17,8 @@ import MainApp from '../views/MainApp.vue'
 // import Order from '../views/Order.vue'
 import Login from '../views/Login.vue'
 import Dashboard from '../views/Dashboard.vue'
+import Order from '../views/Orders.vue'
+import ViewOrder from '../views/ViewOrder.vue'
 
 // import Signup from '../views/Signup.vue'
 // import { guardMyroute } from '../utils/routeGuard'
@@ -38,6 +40,14 @@ const routes = [
       {
         path: 'dashboard',
         component: Dashboard
+      },
+      {
+        path: 'orders',
+        component: Order
+      },
+      {
+        path: 'orders/:id',
+        component: ViewOrder
       },
     ]
   }
@@ -128,7 +138,7 @@ const routes = [
 
 const router = new VueRouter({
   routes,
-  linkActiveClass: 'active-nav-link'
+  linkActiveClass: 'active-link'
 })
 
 export default router

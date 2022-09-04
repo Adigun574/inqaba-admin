@@ -1,35 +1,25 @@
 <template>
-  <div>
+  <div class="full-body">
     <Navbar @toggleSidebar="test"/>
     <div id="main-sidebar" class="sidebar-container">
-      <h2>Sidebar Content</h2>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Est, voluptate?
-        Facere ducimus, autem consequatur repellat quam nam atque explicabo!
-      </p>
+        <div class="sidebar-inner-div">
+            <div>
+                <p><router-link to="/admin/dashboard" active-link="active-link"><i class="fa fa-th"></i> Dashboard</router-link></p>
+                <p><router-link to="/admin/orders" active-link="active-link"><i class="fa fa-th"></i> Orders</router-link></p>
+                <p><router-link to="/admin/orders" active-link="active-link"><i class="fa fa-th"></i> Admin Profile</router-link></p>
+                <p><router-link to="/admin/orders" active-link="active-link"><i class="fa fa-th"></i> Password</router-link></p>
+            </div>
+        </div>
+        <div class="logout-btn-div">
+            <p><i class="fa fa-th"></i> Logout</p>
+        </div>
     </div>
 
-    <div class="button-container">
-      <button id="toggle-button">Toggle</button>
-    </div>
-
-    <div id="content-body" style="color: black">
-        
-        ksdnclknsdcljksdncjndjsckljdcnilcjkdncjdskclnjdncj
+    <div id="content-body">
+        <router-view></router-view>
     </div>
   </div>
 
-  <!-- <div class="full-app">
-
-    <Navbar/>
-
-    <router-view class="app-body-content"/>
-
-    <div class="bottom-spacer"></div>
-
-    <PageFooter class="app-footer"/>
-
-  </div> -->
 </template>
 
 <script>
@@ -47,14 +37,15 @@ export default {
       }
   },
   created() {
-    setTimeout(() => {
-      this.setSidebar();
-    }, 1000);
+    
+  },
+  mounted(){
+    this.setSidebar();
+    document.getElementById("toggle-button").click()
   },
   methods: {
     test(){
-        console.log('test')
-        // this.setSidebar()
+        
     },
     setSidebar() {
       const sidebar = document.getElementById("main-sidebar");
@@ -75,9 +66,9 @@ export default {
       sidebar.classList.remove("hide-sidebar");
       sidebar.classList.add("show-sidebar");
       //
-      const content = document.querySelector('#content-body')
-      content.style.transform = 'translateX(350px)'
-      content.style.transition = 'transform 1s'
+    //   const content = document.querySelector('#content-body')
+    //   content.style.transform = 'translateX(300px)'
+    //   content.style.transition = 'transform 1s'
     },
     hideSideBar() {
       const sidebar = document.getElementById("main-sidebar");
@@ -85,9 +76,9 @@ export default {
       sidebar.classList.remove("show-sidebar");
       sidebar.classList.add("hide-sidebar");
       //
-      const content = document.querySelector('#content-body')
-      content.style.transform = 'translateX(0px)'
-      content.style.transition = 'transform 1s'
+    //   const content = document.querySelector('#content-body')
+    //   content.style.transform = 'translateX(0px)'
+    //   content.style.transition = 'transform 1s'
     },
   },
 };
@@ -99,80 +90,76 @@ export default {
   box-sizing: border-box;
 }
 
-.sidebar-container {
-  transform: translateX(-350px);
-  position: absolute;
-  background-color: #32b308;
-  top: 4rem;
-  left: 0;
-  border: solid 1px black;
-  width: 300px;
-  height: 100%;
-  padding: 1rem;
-  box-shadow: 5px 0 8px black;
-  transition: transform 1s;
-  
+.full-body{
+    overflow-y: hidden;
+    max-height: 100vh;
 }
 
-/*  */
-#content-body {
-  /* transform: translateX(350px); */
+
+.sidebar-container {
+  transform: translateX(-300px);
+  position: absolute;
+  background-color: #32b308;
+  top: 5rem;
+  left: 0;
+  width: 300px;
+  /* height: 100%; */
+  height: calc(100vh - 80px);
+  padding: 1rem;
+  transition: transform 1s;
+  color:white;
+  font-weight: lighter;
 }
-/*  */
+.sidebar-inner-div{
+    padding-top: 50px;
+    display: flex;
+    justify-content: center;
+}
+.sidebar-inner-div p{
+    cursor: pointer;
+}
+.sidebar-inner-div i{
+    margin-right: 10px;
+}
+.logout-btn-div{
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    bottom: 150px;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    margin: auto;
+}
+.active-link{
+    background-color: white;
+    color: #32b308;
+    padding: 5px 10px;
+    width:150%;
+    border-radius: 5px;
+    font-weight: normal;
+}
+
+#content-body {
+  background-color: #F4F4F4;
+  padding:50px;
+  max-height: calc(100vh - 85px);
+  overflow-y: scroll;
+}
 
 .show-sidebar {
   transform: translateX(0px);
 }
 
 .hide-sidebar {
-  transform: translateX(-350px);
+  transform: translateX(-300px);
 }
 
 
 
-/* *{
-  box-sizing: border-box;
-  color:#565656;
-  font-family: 'montserrat';
-}
-.full-app{
-  background-color: #f4f4f4;
-  position: relative;
-}
-.top-nav{
-  display: flex;
-  justify-content: space-between;
-  padding: 20px 50px;
-  color:white;
-  align-items: center;
-}
-.brand-name{
-  color:#31b308;
-  font-weight: bold;
-}
-.cursor-pointer{
-  cursor: pointer;
-}
-.active-nav-link{
-  color:#31b308 !important;
-  border-bottom: 2px solid #31b308;
-  padding-bottom: 5px;
-}
-.nav-links{
-  color:black;
-  text-decoration: none;
-}
-.app-footer{
-  position: absolute;
-  bottom: 0;
-}
-.app-body-content{
-  min-height:97vh;
-}
-.bottom-spacer{
-  height: 70px;
-}
 
+
+/*
 @media (max-width: 500px) {
   .top-nav{
    overflow: scroll;

@@ -1,5 +1,10 @@
 <template>
   <div>
+      <div class="d-flex" style="margin-bottom:30px">
+          <p class="back-arrow-icon"><i class="fas fa-long-arrow-alt-left"></i></p>
+          <p><b>Orders</b></p>
+      </div>
+
     <div class="d-flex">
       <div class="search-icon-div">
         <p><i class="fa fa-search search-icon"></i></p>
@@ -9,20 +14,6 @@
         type="search"
         placeholder="Order ID, Status, Client Name, Date"
       />
-    </div>
-
-    <div class="dashboard-card">
-      <div>
-        <h3 class="calendar-icon"><i class="fa fa-calendar-alt"></i></h3>
-        <div>
-          <p class="recent-orders">Recent Orders</p>
-          <div class="from-previous"><small>From Previous Week</small></div>
-        </div>
-      </div>
-      <div>
-        <h1 class="orders-count">105</h1>
-        <h3 class="orders-chart"><i class="fa fa-line-chart"></i></h3>
-      </div>
     </div>
 
     <table class="table mt-4">
@@ -50,20 +41,44 @@
         <td>11/11/2018</td>
         <td><p style="margin-top:15px" @click="viewOrder(1)"><span class="view-btn">View</span></p></td>
       </tr>
+      <tr>
+        <td>REF/PS01/2022/001</td>
+        <td>Bayo Ojo</td>
+        <td>11/11/2018</td>
+        <td><p style="margin-top:15px" @click="viewOrder(1)"><span class="view-btn">View</span></p></td>
+      </tr>
+      <tr>
+        <td>REF/PS01/2022/001</td>
+        <td>Bayo Ojo</td>
+        <td>11/11/2018</td>
+        <td><p style="margin-top:15px" @click="viewOrder(1)"><span class="view-btn">View</span></p></td>
+      </tr>
+      <tr>
+        <td>REF/PS01/2022/001</td>
+        <td>Bayo Ojo</td>
+        <td>11/11/2018</td>
+        <td><p style="margin-top:15px" @click="viewOrder(1)"><span class="view-btn">View</span></p></td>
+      </tr>
+      <tr>
+        <td>REF/PS01/2022/001</td>
+        <td>Bayo Ojo</td>
+        <td>11/11/2018</td>
+        <td><p style="margin-top:15px" @click="viewOrder(1)"><span class="view-btn">View</span></p></td>
+      </tr>
+      <tr>
+        <td>REF/PS01/2022/001</td>
+        <td>Bayo Ojo</td>
+        <td>11/11/2018</td>
+        <td><p style="margin-top:15px" @click="viewOrder(1)"><span class="view-btn">View</span></p></td>
+      </tr>
     </table>
 
-    <div class="view-all-btn-div">
-        <button class="login-btn" @click="goToOrders()">View All</button>
-    </div>
   </div>
 </template>
 
 <script>
 export default {
     methods:{
-        goToOrders(){
-            this.$router.push('/admin/orders')
-        },
         viewOrder(orderId){
             this.$router.push(`/admin/orders/${orderId}`)
         }
@@ -74,6 +89,10 @@ export default {
 <style scoped>
 *:focus {
   outline: none;
+}
+.back-arrow-icon{
+    margin-right:20px; 
+    color:#32B308
 }
 .search-icon-div {
   background-color: white;
@@ -93,33 +112,6 @@ export default {
   padding-left: 10px;
   border: none;
   width: 350px;
-}
-.dashboard-card {
-  background-color: white;
-  display: flex;
-  justify-content: space-between;
-  margin-top: 30px;
-  padding: 20px;
-  border-radius: 10px;
-  width: 300px;
-}
-.calendar-icon {
-  color: #32b308;
-}
-.recent-orders {
-  font-size: 20px;
-  margin-bottom: 0;
-}
-.from-previous {
-  color: #999;
-  font-size: 12px;
-}
-.orders-count {
-  margin-bottom: 0;
-}
-.orders-chart {
-  text-align: center;
-  color: #32b308;
 }
 tr:nth-child(odd){
     background-color: white;
@@ -146,18 +138,5 @@ th{
     padding:5px 20px;
     font-size: 14px;
     cursor: pointer;
-}
-.login-btn{
-    background-color: #32b308;
-    border: none;
-    border-radius: 5px;
-    color:white;
-    padding:10px 30px;
-    box-shadow: 0px 21.5833px 21.5833px rgba(153, 191, 24, 0.23);
-}
-.view-all-btn-div{
-    display: flex;
-    justify-content: end;
-    margin-top: 30px;
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- <nav class="navbar"> -->
-      <div class="p-4 pt-1">
+      <div class="p-4 pt-3">
           <div class="d-flex align-items-center justify-content-between">
               <div class="d-flex">
                     <p @click="toggleSidebar()" id="toggle-button" class="cursor-pointer toggle-btn-icon" style="font-size:20px"><i class="fa fa-bars"></i></p>

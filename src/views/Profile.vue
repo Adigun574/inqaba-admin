@@ -23,7 +23,7 @@
               <p class="profile-card-title">Full Name:</p>
               <p class="profile-card-value">John Doe</p>
             </div>
-            <p class="edit-icon"><i class="fa fa-edit"></i></p>
+            <p class="edit-icon" @click="openEditModal('name')"><i class="fa fa-edit"></i></p>
           </div>
         </div>
         <div class="col-sm-4">
@@ -32,19 +32,19 @@
               <p class="profile-card-title">Phone Number:</p>
               <p class="profile-card-value">+2349012345678</p>
             </div>
-            <p class="edit-icon"><i class="fa fa-edit"></i></p>
+            <p class="edit-icon" @click="openEditModal('phone')"><i class="fa fa-edit"></i></p>
           </div>
         </div>
       </div>
 
-      <div class="row" style="margin-top:30px">
+      <div class="row" style="margin-top: 30px">
         <div class="col-sm-4">
           <div class="profile-card">
             <div>
               <p class="profile-card-title">Email:</p>
               <p class="profile-card-value">johndoe@inqaba.com</p>
             </div>
-            <p class="edit-icon"><i class="fa fa-edit"></i></p>
+            <p class="edit-icon" @click="openEditModal('email')"><i class="fa fa-edit"></i></p>
           </div>
         </div>
         <div class="col-sm-4">
@@ -53,17 +53,72 @@
               <p class="profile-card-title">Department</p>
               <p class="profile-card-value">Technology</p>
             </div>
-            <p class="edit-icon"><i class="fa fa-edit"></i></p>
+            <p class="edit-icon" @click="openEditModal('department')"><i class="fa fa-edit"></i></p>
           </div>
         </div>
       </div>
-
     </div>
+
+    <!--  -->
+    <div
+      class="modal fade"
+      id="edit-content-modal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalCenterTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="p-4">
+              <div class="form-group" v-if="propertyToEdit === 'name'">
+                  <label class="form-label">Full Name</label>
+                  <input class="form-control">
+              </div>
+              <div class="form-group" v-if="propertyToEdit === 'phone'">
+                  <label class="form-label">Phone Number</label>
+                  <input class="form-control">
+              </div>
+              <div class="form-group" v-if="propertyToEdit === 'email'">
+                  <label class="form-label">Email</label>
+                  <input class="form-control">
+              </div>
+              <div class="form-group" v-if="propertyToEdit === 'department'">
+                  <label class="form-label">Department</label>
+                  <input class="form-control">
+              </div>
+              <button class="login-btn" style="margin-top:30px">Update</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--  -->
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+    data(){
+        return{
+            propertyToEdit:''
+        }
+    },
+    methods:{
+        openEditModal(title){
+            console.log(title)
+            this.propertyToEdit = title
+            this.openModal('edit-content-modal','')
+        },
+        openModal(modalToOpen,modalToClose){
+            if(modalToClose){
+                $(`#${modalToClose}`).modal('hide')
+            }
+            if(modalToOpen){
+                $(`#${modalToOpen}`).modal('show')
+            }
+        },
+    }
+};
 </script>
 
 <style scoped>
@@ -112,5 +167,16 @@ export default {};
 }
 .profile-card .edit-icon {
   align-self: flex-end;
+}
+.edit-icon{
+    cursor: pointer;
+}
+.login-btn{
+    background-color: #32b308;
+    border: none;
+    border-radius: 5px;
+    color:white;
+    padding:10px 30px;
+    box-shadow: 0px 21.5833px 21.5833px rgba(153, 191, 24, 0.23);
 }
 </style>

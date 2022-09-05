@@ -7,7 +7,7 @@
                 <p><router-link to="/admin/dashboard" active-link="active-link"><i class="fa fa-th"></i> Dashboard</router-link></p>
                 <p><router-link to="/admin/orders" active-link="active-link"><i class="fa fa-th"></i> Orders</router-link></p>
                 <p><router-link to="/admin/profile" active-link="active-link"><i class="fa fa-th"></i> Admin Profile</router-link></p>
-                <p><router-link to="/admin/orders" active-link="active-link"><i class="fa fa-th"></i> Password</router-link></p>
+                <p><router-link to="/admin/change-password" active-link="active-link"><i class="fa fa-th"></i> Password</router-link></p>
             </div>
         </div>
         <div class="logout-btn-div">

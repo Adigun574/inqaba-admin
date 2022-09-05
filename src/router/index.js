@@ -20,6 +20,7 @@ import Dashboard from '../views/Dashboard.vue'
 import Order from '../views/Orders.vue'
 import ViewOrder from '../views/ViewOrder.vue'
 import Profile from '../views/Profile.vue'
+import ChangePassword from '../views/ChangePassword.vue'
 
 // import Signup from '../views/Signup.vue'
 // import { guardMyroute } from '../utils/routeGuard'
@@ -53,6 +54,10 @@ const routes = [
       {
         path: 'profile',
         component: Profile
+      },
+      {
+        path: 'change-password',
+        component: ChangePassword
       },
     ]
   }

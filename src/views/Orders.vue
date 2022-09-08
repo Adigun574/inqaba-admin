@@ -16,62 +16,64 @@
       />
     </div>
 
-    <table class="table mt-4">
-      <tr class="table-header-row">
-        <th>Order ID</th>
-        <th>Client Name/Inst.</th>
-        <th>Order Date</th>
-        <th></th>
-      </tr>
-      <tr>
-        <td>REF/PS01/2022/001</td>
-        <td>Bayo Ojo</td>
-        <td>11/11/2018</td>
-        <td><p style="margin-top:15px" @click="viewOrder(1)"><span class="view-btn">View</span></p></td>
-      </tr>
-      <tr>
-        <td>REF/PS01/2022/001</td>
-        <td>Bayo Ojo</td>
-        <td>11/11/2018</td>
-        <td><p style="margin-top:15px" @click="viewOrder(1)"><span class="view-btn">View</span></p></td>
-      </tr>
-      <tr>
-        <td>REF/PS01/2022/001</td>
-        <td>Bayo Ojo</td>
-        <td>11/11/2018</td>
-        <td><p style="margin-top:15px" @click="viewOrder(1)"><span class="view-btn">View</span></p></td>
-      </tr>
-      <tr>
-        <td>REF/PS01/2022/001</td>
-        <td>Bayo Ojo</td>
-        <td>11/11/2018</td>
-        <td><p style="margin-top:15px" @click="viewOrder(1)"><span class="view-btn">View</span></p></td>
-      </tr>
-      <tr>
-        <td>REF/PS01/2022/001</td>
-        <td>Bayo Ojo</td>
-        <td>11/11/2018</td>
-        <td><p style="margin-top:15px" @click="viewOrder(1)"><span class="view-btn">View</span></p></td>
-      </tr>
-      <tr>
-        <td>REF/PS01/2022/001</td>
-        <td>Bayo Ojo</td>
-        <td>11/11/2018</td>
-        <td><p style="margin-top:15px" @click="viewOrder(1)"><span class="view-btn">View</span></p></td>
-      </tr>
-      <tr>
-        <td>REF/PS01/2022/001</td>
-        <td>Bayo Ojo</td>
-        <td>11/11/2018</td>
-        <td><p style="margin-top:15px" @click="viewOrder(1)"><span class="view-btn">View</span></p></td>
-      </tr>
-      <tr>
-        <td>REF/PS01/2022/001</td>
-        <td>Bayo Ojo</td>
-        <td>11/11/2018</td>
-        <td><p style="margin-top:15px" @click="viewOrder(1)"><span class="view-btn">View</span></p></td>
-      </tr>
-    </table>
+    <div class="overflow-auto order-table">
+        <table class="table mt-4">
+        <tr class="table-header-row">
+            <th>Order ID</th>
+            <th>Client Name/Inst.</th>
+            <th>Order Date</th>
+            <th></th>
+        </tr>
+        <tr>
+            <td>REF/PS01/2022/001</td>
+            <td>Bayo Ojo</td>
+            <td>11/11/2018</td>
+            <td><p style="margin-top:15px" @click="viewOrder(1)"><span class="view-btn">View</span></p></td>
+        </tr>
+        <tr>
+            <td>REF/PS01/2022/001</td>
+            <td>Bayo Ojo</td>
+            <td>11/11/2018</td>
+            <td><p style="margin-top:15px" @click="viewOrder(1)"><span class="view-btn">View</span></p></td>
+        </tr>
+        <tr>
+            <td>REF/PS01/2022/001</td>
+            <td>Bayo Ojo</td>
+            <td>11/11/2018</td>
+            <td><p style="margin-top:15px" @click="viewOrder(1)"><span class="view-btn">View</span></p></td>
+        </tr>
+        <tr>
+            <td>REF/PS01/2022/001</td>
+            <td>Bayo Ojo</td>
+            <td>11/11/2018</td>
+            <td><p style="margin-top:15px" @click="viewOrder(1)"><span class="view-btn">View</span></p></td>
+        </tr>
+        <tr>
+            <td>REF/PS01/2022/001</td>
+            <td>Bayo Ojo</td>
+            <td>11/11/2018</td>
+            <td><p style="margin-top:15px" @click="viewOrder(1)"><span class="view-btn">View</span></p></td>
+        </tr>
+        <tr>
+            <td>REF/PS01/2022/001</td>
+            <td>Bayo Ojo</td>
+            <td>11/11/2018</td>
+            <td><p style="margin-top:15px" @click="viewOrder(1)"><span class="view-btn">View</span></p></td>
+        </tr>
+        <tr>
+            <td>REF/PS01/2022/001</td>
+            <td>Bayo Ojo</td>
+            <td>11/11/2018</td>
+            <td><p style="margin-top:15px" @click="viewOrder(1)"><span class="view-btn">View</span></p></td>
+        </tr>
+        <tr>
+            <td>REF/PS01/2022/001</td>
+            <td>Bayo Ojo</td>
+            <td>11/11/2018</td>
+            <td><p style="margin-top:15px" @click="viewOrder(1)"><span class="view-btn">View</span></p></td>
+        </tr>
+        </table>
+    </div>
 
   </div>
 </template>
@@ -138,5 +140,10 @@ th{
     padding:5px 20px;
     font-size: 14px;
     cursor: pointer;
+}
+@media (max-width: 500px) {
+  .order-table{
+      font-size: 14px;
+  }
 }
 </style>

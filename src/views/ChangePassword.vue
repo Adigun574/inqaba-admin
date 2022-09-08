@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="p-4 pt-0 overflow-hidden">
     <div class="d-flex" style="margin-bottom: 30px">
       <p class="back-arrow-icon"><i class="fas fa-long-arrow-alt-left"></i></p>
       <p><b>Dashboard</b></p>
@@ -32,6 +32,9 @@ export default {};
 <style scoped>
 *:focus {
   outline: none;
+}
+input{
+    border: none;
 }
 input.form-control:focus{
     box-shadow: inset 0 -1px 0 white;

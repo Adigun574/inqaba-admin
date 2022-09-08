@@ -18,7 +18,7 @@
     <div class="profile-card-div">
       <div class="row">
         <div class="col-sm-4">
-          <div class="profile-card">
+          <div class="profile-card mb-4">
             <div>
               <p class="profile-card-title">Full Name:</p>
               <p class="profile-card-value">John Doe</p>
@@ -39,7 +39,7 @@
 
       <div class="row" style="margin-top: 30px">
         <div class="col-sm-4">
-          <div class="profile-card">
+          <div class="profile-card mb-4">
             <div>
               <p class="profile-card-title">Email:</p>
               <p class="profile-card-value">johndoe@inqaba.com</p>

@@ -1,6 +1,6 @@
 <template>
   <div class="full-body">
-    <Navbar @toggleSidebar="test"/>
+    <Navbar />
     <div id="main-sidebar" class="sidebar-container">
         <div class="sidebar-inner-div">
             <div>
@@ -37,16 +37,19 @@ export default {
       }
   },
   created() {
-    
+    console.log(screen.width)
   },
   mounted(){
     this.setSidebar();
+    if(screen.width < 600){
+        this.hideSideBar()
+    }
+    else{
+        this.showSideBar()
+    }
     // document.getElementById("toggle-button").click()
   },
   methods: {
-    test(){
-        
-    },
     setSidebar() {
       const sidebar = document.getElementById("main-sidebar");
 
@@ -65,20 +68,17 @@ export default {
       this.sidebarVisible = true;
       sidebar.classList.remove("hide-sidebar");
       sidebar.classList.add("show-sidebar");
-      //
-    //   const content = document.querySelector('#content-body')
-    //   content.style.transform = 'translateX(300px)'
-    //   content.style.transition = 'transform 1s'
+
+      document.querySelector('#content-body').style.marginLeft = '300px'
     },
     hideSideBar() {
       const sidebar = document.getElementById("main-sidebar");
       this.sidebarVisible = false;
       sidebar.classList.remove("show-sidebar");
       sidebar.classList.add("hide-sidebar");
-      //
-    //   const content = document.querySelector('#content-body')
-    //   content.style.transform = 'translateX(0px)'
-    //   content.style.transition = 'transform 1s'
+
+      document.querySelector('#content-body').style.marginLeft = '0px'
+
     },
   },
 };
@@ -145,6 +145,7 @@ export default {
   padding:50px;
   max-height: calc(100vh - 85px);
   overflow-y: scroll;
+  transition: margin-left 1s;
 }
 
 .show-sidebar {
@@ -159,13 +160,10 @@ export default {
 
 
 
-/*
+
 @media (max-width: 500px) {
-  .top-nav{
-   overflow: scroll;
+  #content-body {
+    padding:20px;
   }
-  .bottom-spacer{
-    height: 100px;
-  }
-} */
+}
 </style>

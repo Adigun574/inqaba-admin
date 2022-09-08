@@ -16,22 +16,32 @@
       />
     </div>
 
-    <div class="d-flex justify-content-between order-details-card">
-      <div>
-        <p class="card-title">Order ID:</p>
-        <p class="card-value">REF/PS01/2022/001</p>
-      </div>
-      <div>
-        <p class="card-title">Client Name:</p>
-        <p class="card-value">REF/PS01/2022/001</p>
-      </div>
-      <div>
-        <p class="card-title">Order Date:</p>
-        <p class="card-value">REF/PS01/2022/001</p>
-      </div>
-      <div>
-        <p class="card-title">Service Type:</p>
-        <p class="card-value">REF/PS01/2022/001</p>
+    <div class="order-details-card">
+      <div class="row">
+        <div class="col-sm-3">
+          <div>
+            <p class="card-title">Order ID:</p>
+            <p class="card-value">REF/PS01/2022/001</p>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div>
+            <p class="card-title">Client Name:</p>
+            <p class="card-value">REF/PS01/2022/001</p>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div>
+            <p class="card-title">Order Date:</p>
+            <p class="card-value">REF/PS01/2022/001</p>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div>
+            <p class="card-title">Service Type:</p>
+            <p class="card-value">REF/PS01/2022/001</p>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -91,8 +101,17 @@
         </div>
       </div>
     </div>
+ 
+    <!-- <div>
+        <b-tabs content-class="mt-3" justified active-nav-item-class="font-weight-bold text-uppercase text-danger">
+            <b-tab title="First" active><p>I'm the first tab</p></b-tab>
+            <b-tab title="Second"><p>I'm the second tab</p></b-tab>
+            <b-tab title="Very, very long title"><p>I'm the tab with the very, very long title</p></b-tab>
+            <b-tab title="Disabled" disabled><p>I'm a disabled tab!</p></b-tab>
+        </b-tabs>
+    </div> -->
 
-    <div>
+    <div class="overflow-auto order-table">
       <table class="table mt-4">
         <tr class="table-header-row">
           <th>Sample</th>
@@ -150,7 +169,7 @@
       </table>
     </div>
 
-    <div>
+    <div class="overflow-auto order-table">
       <table class="table mt-4">
         <tr class="table-header-row">
           <th>Forward</th>
@@ -175,7 +194,7 @@
       </table>
     </div>
 
-    <div>
+    <div class="overflow-auto order-table">
       <table class="table mt-4">
         <tr class="table-header-row">
           <th>Name</th>
@@ -196,7 +215,7 @@
       </table>
     </div>
 
-    <div>
+    <div class="overflow-auto order-table">
       <table class="table mt-4">
         <tr class="table-header-row">
           <th>Name</th>
@@ -221,7 +240,7 @@
       </table>
     </div>
 
-    <div>
+    <div class="overflow-auto order-table">
       <table class="table mt-4">
         <tr class="table-header-row">
           <th>Name</th>
@@ -266,32 +285,37 @@
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="p-4">
-              <div class="d-flex justify-content-end">
-                <p class="close-icon cursor-pointer" @click="openModal('','update-lab-stage-modal')"><i class="fa fa-times"></i></p>
-              </div>
-              <h4 class="text-center mb-4">Select Lab Stage</h4>
+            <div class="d-flex justify-content-end">
+              <p
+                class="close-icon cursor-pointer"
+                @click="openModal('', 'update-lab-stage-modal')"
+              >
+                <i class="fa fa-times"></i>
+              </p>
+            </div>
+            <h4 class="text-center mb-4">Select Lab Stage</h4>
 
-              <div class="form-group mb-4">
-                  <label class="form-label">Label Stage</label>
-                  <select class="form-control pt-3 pb-3">
-                      <option>Select One</option>
-                      <option>Stage A</option>
-                      <option>Stage B</option>
-                      <option>Stage C</option>
-                  </select>
-              </div>
+            <div class="form-group mb-4">
+              <label class="form-label">Label Stage</label>
+              <select class="form-control pt-3 pb-3">
+                <option>Select One</option>
+                <option>Stage A</option>
+                <option>Stage B</option>
+                <option>Stage C</option>
+              </select>
+            </div>
 
-              <div class="form-group">
-                  <label class="form-label">Comment</label>
-                  <textarea class="form-control" rows="5"></textarea>
-              </div>
+            <div class="form-group">
+              <label class="form-label">Comment</label>
+              <textarea class="form-control" rows="5"></textarea>
+            </div>
 
-              <div class="d-flex justify-content-end mt-4">
-                <button class="cancel-bt mr-">Cancel</button>
-                <button class="login-btn" style="margin-top: 30px">Update Lab Stage</button>
-              </div>
-
-            
+            <div class="d-flex justify-content-end mt-4">
+              <button class="cancel-bt mr-">Cancel</button>
+              <button class="login-btn" style="margin-top: 30px">
+                Update Lab Stage
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -301,6 +325,7 @@
 </template>
 
 <script>
+
 export default {
   methods: {
     openUpdateLabStageModal() {
@@ -431,20 +456,27 @@ tr:hover {
 .cursor-pointer {
   cursor: pointer;
 }
-.close-icon{
-    background-color: #DBDBDB;
-    padding:1px 10px;
-    border-radius: 2px;
-    color:#A6A6A6;
+.close-icon {
+  background-color: #dbdbdb;
+  padding: 1px 10px;
+  border-radius: 2px;
+  color: #a6a6a6;
 }
-#update-lab-stage-modal select, #update-lab-stage-modal textarea{
-    background-color: #F2F2F2;
-    border: none;
+#update-lab-stage-modal select,
+#update-lab-stage-modal textarea {
+  background-color: #f2f2f2;
+  border: none;
 }
-.cancel-btn{
-    background-color: #F2F2F2;
-    border: none;
-    /* padding: 10px 30px; */
-    /* height: 10px; */
+.cancel-btn {
+  background-color: #f2f2f2;
+  border: none;
+  /* padding: 10px 30px; */
+  /* height: 10px; */
+}
+
+@media (max-width: 500px) {
+  .order-table{
+      font-size: 14px;
+  }
 }
 </style>

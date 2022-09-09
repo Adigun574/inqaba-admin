@@ -21,25 +21,27 @@
         <div class="col-sm-3">
           <div>
             <p class="card-title">Order ID:</p>
-            <p class="card-value">REF/PS01/2022/001</p>
+            <p class="card-value">{{ orderDetails?.orderTag }}</p>
           </div>
         </div>
         <div class="col-sm-3">
           <div>
             <p class="card-title">Client Name:</p>
-            <p class="card-value">REF/PS01/2022/001</p>
+            <p class="card-value">{{ orderDetails?.clientName }}</p>
           </div>
         </div>
         <div class="col-sm-3">
           <div>
             <p class="card-title">Order Date:</p>
-            <p class="card-value">REF/PS01/2022/001</p>
+            <p class="card-value">
+              {{ orderDetails?.created_at.split("T")[0] }}
+            </p>
           </div>
         </div>
         <div class="col-sm-3">
           <div>
             <p class="card-title">Service Type:</p>
-            <p class="card-value">REF/PS01/2022/001</p>
+            <p class="card-value">{{ orderDetails?.serviceType }}</p>
           </div>
         </div>
       </div>
@@ -49,13 +51,13 @@
       <div class="col-sm-9">
         <div class="order-details-card">
           <p class="institute-title">Institute</p>
-          <p class="institute-value">Lorem ipsum dolor sit amet.</p>
+          <p class="institute-value">{{ orderDetails?.institute }}</p>
         </div>
       </div>
       <div class="col-sm-3">
         <div class="order-details-card">
           <p class="institute-title">Collection of Sample</p>
-          <p class="institute-value">Delivery</p>
+          <p class="institute-value">{{ orderDetails?.sampleCollection }}</p>
         </div>
       </div>
     </div>
@@ -70,7 +72,9 @@
               </h4>
               <p>Sample Tubes Submitted</p>
             </div>
-            <h1><b>3</b></h1>
+            <h1>
+              <b>{{ orderDetails?.sampleTubes }}</b>
+            </h1>
           </div>
         </div>
       </div>
@@ -83,7 +87,9 @@
               </h4>
               <p>Primer Tubes Submitted</p>
             </div>
-            <h1><b>3</b></h1>
+            <h1>
+              <b>{{ orderDetails?.primerTubes }}</b>
+            </h1>
           </div>
         </div>
       </div>
@@ -96,13 +102,15 @@
               </h4>
               <p>Plates Submitted</p>
             </div>
-            <h1><b>3</b></h1>
+            <h1>
+              <b>{{ orderDetails?.plates }}</b>
+            </h1>
           </div>
         </div>
       </div>
     </div>
 
-    <div style="margin-top: 50px;">
+    <div style="margin-top: 50px">
       <b-tabs
         content-class="mt-3"
         justified
@@ -121,47 +129,17 @@
                 <th>Lab Stage</th>
                 <th></th>
               </tr>
-              <tr>
-                <td>Name</td>
-                <td>Type here</td>
-                <td>Method Stated</td>
-                <td>Method Stated</td>
+              <tr v-for="sampleInfo in sampleInfos" :key="sampleInfo.id">
+                <td>{{sampleInfo.sampleName}}</td>
+                <td>{{sampleInfo.sampleType}}</td>
+                <td>{{sampleInfo.purificationMethod}}</td>
+                <td>{{sampleInfo.extractionMethod}}</td>
                 <td>
                   <p style="margin-top: 15px">
-                    Stage B
+                    {{sampleInfo.status}}
                     <i
                       class="fa fa-edit cursor-pointer"
-                      @click="openUpdateLabStageModal()"
-                    ></i>
-                  </p>
-                </td>
-              </tr>
-              <tr>
-                <td>Name</td>
-                <td>Type here</td>
-                <td>Method Stated</td>
-                <td>Method Stated</td>
-                <td>
-                  <p style="margin-top: 15px">
-                    Stage B
-                    <i
-                      class="fa fa-edit cursor-pointer"
-                      @click="openUpdateLabStageModal()"
-                    ></i>
-                  </p>
-                </td>
-              </tr>
-              <tr>
-                <td>Name</td>
-                <td>Type here</td>
-                <td>Method Stated</td>
-                <td>Method Stated</td>
-                <td>
-                  <p style="margin-top: 15px">
-                    Stage B
-                    <i
-                      class="fa fa-edit cursor-pointer"
-                      @click="openUpdateLabStageModal()"
+                      @click="openUpdateLabStageModal(sampleInfo.id)"
                     ></i>
                   </p>
                 </td>
@@ -171,31 +149,6 @@
         </b-tab>
 
         <b-tab title="Primer">
-          <div class="overflow-auto order-table" style="border-bottom: 1px solid #BDBDBD">
-            <h3 class="mt-4">Primer Information</h3>
-            <table class="table mt-4">
-              <tr class="table-header-row">
-                <th>Forward</th>
-                <th>Reverse</th>
-                <th>Internal Sequencing Primer Name</th>
-              </tr>
-              <tr>
-                <td>Type here</td>
-                <td>Type here</td>
-                <td><p style="margin-top: 15px">Primer Name Here</p></td>
-              </tr>
-              <tr>
-                <td>Type here</td>
-                <td>Type here</td>
-                <td><p style="margin-top: 15px">Primer Name Here</p></td>
-              </tr>
-              <tr>
-                <td>Type here</td>
-                <td>Type here</td>
-                <td><p style="margin-top: 15px">Primer Name Here</p></td>
-              </tr>
-            </table>
-          </div>
 
           <div class="overflow-auto order-table">
             <h3 class="mt-4">Inqaba Primer</h3>
@@ -204,17 +157,9 @@
                 <th>Name</th>
                 <th>Sequence</th>
               </tr>
-              <tr>
-                <td>Type here</td>
-                <td><p style="margin-top: 15px">Type Here</p></td>
-              </tr>
-              <tr>
-                <td>Type here</td>
-                <td><p style="margin-top: 15px">Type Here</p></td>
-              </tr>
-              <tr>
-                <td>Type here</td>
-                <td><p style="margin-top: 15px">Type Here</p></td>
+              <tr v-for="primer in inqabaPrimers" :key="primer.id">
+                <td>{{primer.name}}</td>
+                <td><p style="margin-top: 15px">{{primer.sequence}}</p></td>
               </tr>
             </table>
           </div>
@@ -227,28 +172,16 @@
                 <th>Sequence</th>
                 <th>Concentration</th>
               </tr>
-              <tr>
-                <td>Type here</td>
-                <td>Type here</td>
-                <td><p style="margin-top: 15px">Primer Name Here</p></td>
-              </tr>
-              <tr>
-                <td>Type here</td>
-                <td>Type here</td>
-                <td><p style="margin-top: 15px">Primer Name Here</p></td>
-              </tr>
-              <tr>
-                <td>Type here</td>
-                <td>Type here</td>
-                <td><p style="margin-top: 15px">Primer Name Here</p></td>
+              <tr v-for="primer in personalPrimers" :key="primer.id">
+                <td>{{primer.name}}</td>
+                <td>{{primer.sequence}}</td>
+                <td><p style="margin-top: 15px">{{primer.concentration}}</p></td>
               </tr>
             </table>
           </div>
         </b-tab>
 
         <b-tab title="Others">
-          
-
           <div class="overflow-auto order-table">
             <h3 class="mt-4">Other Information</h3>
             <table class="table mt-4">
@@ -256,17 +189,9 @@
                 <th>Amplicon Insert Size</th>
                 <th>Plasmid Name/Backbone</th>
               </tr>
-              <tr>
-                <td>Size here</td>
-                <td><p style="margin-top: 15px">Name here</p></td>
-              </tr>
-              <tr>
-                <td>Size here</td>
-                <td><p style="margin-top: 15px">Name here</p></td>
-              </tr>
-              <tr>
-                <td>Size here</td>
-                <td><p style="margin-top: 15px">Name here</p></td>
+              <tr v-for="sampleInfo in sampleInfos" :key="sampleInfo.id">
+                <td>{{sampleInfo.ampliconSize}}</td>
+                <td><p style="margin-top: 15px">{{sampleInfo.annealingTemperature}}</p></td>
               </tr>
             </table>
           </div>
@@ -338,9 +263,28 @@
 </template>
 
 <script>
+import axios from "axios";
+import { baseUrl } from "../utils/baseUrl";
+
 export default {
+  data() {
+    return {
+      orderDetails: null,
+      orderId: null,
+      sampleInfos: [],
+      inqabaPrimers: [],
+      personalPrimers: []
+    };
+  },
+  created() {
+    this.getRouteDetails();
+    this.getOrderDetails();
+    this.getSampleInformation();
+    this.getInqabaPrimers();
+    this.getPersonalPrimers();
+  },
   methods: {
-    openUpdateLabStageModal() {
+    openUpdateLabStageModal(sampleInfoId) {
       this.openModal("update-lab-stage-modal");
     },
     openModal(modalToOpen, modalToClose) {
@@ -350,6 +294,54 @@ export default {
       if (modalToOpen) {
         $(`#${modalToOpen}`).modal("show");
       }
+    },
+    getOrderDetails() {
+      axios
+        .get(`${baseUrl}admin/order/${this.orderId}`)
+        .then((res) => {
+          this.orderDetails = res.data.data.orderDetails;
+        //   console.log(this.orderDetails);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    getRouteDetails() {
+      this.orderId = this.$route.params.id;
+    },
+    getSampleInformation() {
+      axios
+        .get(`${baseUrl}admin/order/sampleInfo/${this.orderId}`)
+        .then((res) => {
+            this.sampleInfos = res.data.data.sampleInfo;
+            // console.log(this.sampleInfos)
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    getInqabaPrimers() {
+      axios
+        .get(`${baseUrl}admin/order/primers/inqaba/${this.orderId}`)
+        .then((res) => {
+            // console.log(res)
+            this.inqabaPrimers = res.data.data.inqabaPrimers;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    getPersonalPrimers() {
+      axios
+        .get(`${baseUrl}admin/order/primers/personal/${this.orderId}`)
+        .then((res) => {
+            // console.log(res)
+            this.personalPrimers = res.data.data.personalPrimers;
+            // console.log(this.personalPrimers)
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
   },
 };

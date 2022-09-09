@@ -81,7 +81,7 @@ export default {
         login(){
             if(this.validateData()){
                 this.loggingIn = true
-                axios.post(`${baseUrl}auth/login`,this.loginPayload)
+                axios.post(`${baseUrl}admin/auth/login`,this.loginPayload)
                 .then(res=>{
                     if(res?.data?.data?.token){
                         localStorage.setItem('inqaba-token', res?.data?.data?.token)

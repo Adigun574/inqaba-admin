@@ -20,57 +20,17 @@
         <table class="table mt-4">
         <tr class="table-header-row">
             <th>Order ID</th>
-            <th>Client Name/Inst.</th>
+            <th>Client Name</th>
+            <th>Institute</th>
             <th>Order Date</th>
             <th></th>
         </tr>
-        <tr>
-            <td>REF/PS01/2022/001</td>
-            <td>Bayo Ojo</td>
-            <td>11/11/2018</td>
-            <td><p style="margin-top:15px" @click="viewOrder(1)"><span class="view-btn">View</span></p></td>
-        </tr>
-        <tr>
-            <td>REF/PS01/2022/001</td>
-            <td>Bayo Ojo</td>
-            <td>11/11/2018</td>
-            <td><p style="margin-top:15px" @click="viewOrder(1)"><span class="view-btn">View</span></p></td>
-        </tr>
-        <tr>
-            <td>REF/PS01/2022/001</td>
-            <td>Bayo Ojo</td>
-            <td>11/11/2018</td>
-            <td><p style="margin-top:15px" @click="viewOrder(1)"><span class="view-btn">View</span></p></td>
-        </tr>
-        <tr>
-            <td>REF/PS01/2022/001</td>
-            <td>Bayo Ojo</td>
-            <td>11/11/2018</td>
-            <td><p style="margin-top:15px" @click="viewOrder(1)"><span class="view-btn">View</span></p></td>
-        </tr>
-        <tr>
-            <td>REF/PS01/2022/001</td>
-            <td>Bayo Ojo</td>
-            <td>11/11/2018</td>
-            <td><p style="margin-top:15px" @click="viewOrder(1)"><span class="view-btn">View</span></p></td>
-        </tr>
-        <tr>
-            <td>REF/PS01/2022/001</td>
-            <td>Bayo Ojo</td>
-            <td>11/11/2018</td>
-            <td><p style="margin-top:15px" @click="viewOrder(1)"><span class="view-btn">View</span></p></td>
-        </tr>
-        <tr>
-            <td>REF/PS01/2022/001</td>
-            <td>Bayo Ojo</td>
-            <td>11/11/2018</td>
-            <td><p style="margin-top:15px" @click="viewOrder(1)"><span class="view-btn">View</span></p></td>
-        </tr>
-        <tr>
-            <td>REF/PS01/2022/001</td>
-            <td>Bayo Ojo</td>
-            <td>11/11/2018</td>
-            <td><p style="margin-top:15px" @click="viewOrder(1)"><span class="view-btn">View</span></p></td>
+        <tr v-for="order in orders" :key="order.id">
+            <td>{{order.orderTag}}</td>
+            <td>{{order.user.name}}</td>
+            <td>{{order.user.institute}}</td>
+            <td>{{order.created_at.split('T')[0]}}</td>
+            <td><p style="margin-top:15px" @click="viewOrder(order.id)"><span class="view-btn">View</span></p></td>
         </tr>
         </table>
     </div>
@@ -79,11 +39,32 @@
 </template>
 
 <script>
+import axios from 'axios';
+import { baseUrl } from '../utils/baseUrl';
+
 export default {
+    data() {
+        return {
+            orders: []
+        }
+    },
+    created() {
+        this.getOrders()
+    },
     methods:{
         viewOrder(orderId){
             this.$router.push(`/admin/orders/${orderId}`)
-        }
+        },
+        getOrders(){
+            axios.get(`${baseUrl}admin/order?pageSize=6&page=1`)
+            .then(res=>{
+                this.orders = res.data.data.orders
+                // console.log(this.orders)
+            })
+            .catch(err =>{
+                console.log(err)
+            })
+        },
     }
 };
 </script>

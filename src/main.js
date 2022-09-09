@@ -11,7 +11,7 @@ import 'bootstrap-vue-3/dist/bootstrap-vue-3.css'
 import VueToast from 'vue-toast-notification';
 import 'vue-toast-notification/dist/theme-sugar.css';
 
-// import { BootstrapVue, IconsPlugin } from 'bootstrap-vue-3'
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 
 
 import axios from 'axios'
@@ -21,7 +21,7 @@ Vue.use(VueToast);
 
 Vue.use(VueRouter);
 
-// Vue.use(BootstrapVue)
+Vue.use(BootstrapVue)
 
 
 

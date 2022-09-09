@@ -21,7 +21,7 @@
       </div>
       <div>
         <h1 class="orders-count">105</h1>
-        <h3 class="orders-chart"><i class="fa fa-line-chart"></i></h3>
+        <h3 class="orders-chart"><i class="fa fa-line-chart" style="color: #32B308"></i></h3>
       </div>
     </div>
 

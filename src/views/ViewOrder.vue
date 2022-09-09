@@ -101,164 +101,177 @@
         </div>
       </div>
     </div>
- 
-    <!-- <div>
-        <b-tabs content-class="mt-3" justified active-nav-item-class="font-weight-bold text-uppercase text-danger">
-            <b-tab title="First" active><p>I'm the first tab</p></b-tab>
-            <b-tab title="Second"><p>I'm the second tab</p></b-tab>
-            <b-tab title="Very, very long title"><p>I'm the tab with the very, very long title</p></b-tab>
-            <b-tab title="Disabled" disabled><p>I'm a disabled tab!</p></b-tab>
-        </b-tabs>
-    </div> -->
 
-    <div class="overflow-auto order-table">
-      <table class="table mt-4">
-        <tr class="table-header-row">
-          <th>Sample</th>
-          <th>Sample Type</th>
-          <th>Purification Method</th>
-          <th>Extraction Method</th>
-          <th>Lab Stage</th>
-          <th></th>
-        </tr>
-        <tr>
-          <td>Name</td>
-          <td>Type here</td>
-          <td>Method Stated</td>
-          <td>Method Stated</td>
-          <td>
-            <p style="margin-top: 15px">
-              Stage B
-              <i
-                class="fa fa-edit cursor-pointer"
-                @click="openUpdateLabStageModal()"
-              ></i>
-            </p>
-          </td>
-        </tr>
-        <tr>
-          <td>Name</td>
-          <td>Type here</td>
-          <td>Method Stated</td>
-          <td>Method Stated</td>
-          <td>
-            <p style="margin-top: 15px">
-              Stage B
-              <i
-                class="fa fa-edit cursor-pointer"
-                @click="openUpdateLabStageModal()"
-              ></i>
-            </p>
-          </td>
-        </tr>
-        <tr>
-          <td>Name</td>
-          <td>Type here</td>
-          <td>Method Stated</td>
-          <td>Method Stated</td>
-          <td>
-            <p style="margin-top: 15px">
-              Stage B
-              <i
-                class="fa fa-edit cursor-pointer"
-                @click="openUpdateLabStageModal()"
-              ></i>
-            </p>
-          </td>
-        </tr>
-      </table>
-    </div>
+    <div style="margin-top: 50px;">
+      <b-tabs
+        content-class="mt-3"
+        justified
+        nav-class="order-tab-nav"
+        active-nav-item-class="active-nav-header"
+      >
+        <b-tab title="Sample" active>
+          <div class="overflow-auto order-table">
+            <h3 class="mt-4">Sample Information</h3>
+            <table class="table mt-4">
+              <tr class="table-header-row">
+                <th>Sample</th>
+                <th>Sample Type</th>
+                <th>Purification Method</th>
+                <th>Extraction Method</th>
+                <th>Lab Stage</th>
+                <th></th>
+              </tr>
+              <tr>
+                <td>Name</td>
+                <td>Type here</td>
+                <td>Method Stated</td>
+                <td>Method Stated</td>
+                <td>
+                  <p style="margin-top: 15px">
+                    Stage B
+                    <i
+                      class="fa fa-edit cursor-pointer"
+                      @click="openUpdateLabStageModal()"
+                    ></i>
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>Name</td>
+                <td>Type here</td>
+                <td>Method Stated</td>
+                <td>Method Stated</td>
+                <td>
+                  <p style="margin-top: 15px">
+                    Stage B
+                    <i
+                      class="fa fa-edit cursor-pointer"
+                      @click="openUpdateLabStageModal()"
+                    ></i>
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>Name</td>
+                <td>Type here</td>
+                <td>Method Stated</td>
+                <td>Method Stated</td>
+                <td>
+                  <p style="margin-top: 15px">
+                    Stage B
+                    <i
+                      class="fa fa-edit cursor-pointer"
+                      @click="openUpdateLabStageModal()"
+                    ></i>
+                  </p>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </b-tab>
 
-    <div class="overflow-auto order-table">
-      <table class="table mt-4">
-        <tr class="table-header-row">
-          <th>Forward</th>
-          <th>Reverse</th>
-          <th>Internal Sequencing Primer Name</th>
-        </tr>
-        <tr>
-          <td>Type here</td>
-          <td>Type here</td>
-          <td><p style="margin-top: 15px">Primer Name Here</p></td>
-        </tr>
-        <tr>
-          <td>Type here</td>
-          <td>Type here</td>
-          <td><p style="margin-top: 15px">Primer Name Here</p></td>
-        </tr>
-        <tr>
-          <td>Type here</td>
-          <td>Type here</td>
-          <td><p style="margin-top: 15px">Primer Name Here</p></td>
-        </tr>
-      </table>
-    </div>
+        <b-tab title="Primer">
+          <div class="overflow-auto order-table" style="border-bottom: 1px solid #BDBDBD">
+            <h3 class="mt-4">Primer Information</h3>
+            <table class="table mt-4">
+              <tr class="table-header-row">
+                <th>Forward</th>
+                <th>Reverse</th>
+                <th>Internal Sequencing Primer Name</th>
+              </tr>
+              <tr>
+                <td>Type here</td>
+                <td>Type here</td>
+                <td><p style="margin-top: 15px">Primer Name Here</p></td>
+              </tr>
+              <tr>
+                <td>Type here</td>
+                <td>Type here</td>
+                <td><p style="margin-top: 15px">Primer Name Here</p></td>
+              </tr>
+              <tr>
+                <td>Type here</td>
+                <td>Type here</td>
+                <td><p style="margin-top: 15px">Primer Name Here</p></td>
+              </tr>
+            </table>
+          </div>
 
-    <div class="overflow-auto order-table">
-      <table class="table mt-4">
-        <tr class="table-header-row">
-          <th>Name</th>
-          <th>Sequence</th>
-        </tr>
-        <tr>
-          <td>Type here</td>
-          <td><p style="margin-top: 15px">Type Here</p></td>
-        </tr>
-        <tr>
-          <td>Type here</td>
-          <td><p style="margin-top: 15px">Type Here</p></td>
-        </tr>
-        <tr>
-          <td>Type here</td>
-          <td><p style="margin-top: 15px">Type Here</p></td>
-        </tr>
-      </table>
-    </div>
+          <div class="overflow-auto order-table">
+            <h3 class="mt-4">Inqaba Primer</h3>
+            <table class="table mt-4">
+              <tr class="table-header-row">
+                <th>Name</th>
+                <th>Sequence</th>
+              </tr>
+              <tr>
+                <td>Type here</td>
+                <td><p style="margin-top: 15px">Type Here</p></td>
+              </tr>
+              <tr>
+                <td>Type here</td>
+                <td><p style="margin-top: 15px">Type Here</p></td>
+              </tr>
+              <tr>
+                <td>Type here</td>
+                <td><p style="margin-top: 15px">Type Here</p></td>
+              </tr>
+            </table>
+          </div>
 
-    <div class="overflow-auto order-table">
-      <table class="table mt-4">
-        <tr class="table-header-row">
-          <th>Name</th>
-          <th>Sequence</th>
-          <th>Concentration</th>
-        </tr>
-        <tr>
-          <td>Type here</td>
-          <td>Type here</td>
-          <td><p style="margin-top: 15px">Primer Name Here</p></td>
-        </tr>
-        <tr>
-          <td>Type here</td>
-          <td>Type here</td>
-          <td><p style="margin-top: 15px">Primer Name Here</p></td>
-        </tr>
-        <tr>
-          <td>Type here</td>
-          <td>Type here</td>
-          <td><p style="margin-top: 15px">Primer Name Here</p></td>
-        </tr>
-      </table>
-    </div>
+          <div class="overflow-auto order-table">
+            <h3 class="mt-4">Personal Primer</h3>
+            <table class="table mt-4">
+              <tr class="table-header-row">
+                <th>Name</th>
+                <th>Sequence</th>
+                <th>Concentration</th>
+              </tr>
+              <tr>
+                <td>Type here</td>
+                <td>Type here</td>
+                <td><p style="margin-top: 15px">Primer Name Here</p></td>
+              </tr>
+              <tr>
+                <td>Type here</td>
+                <td>Type here</td>
+                <td><p style="margin-top: 15px">Primer Name Here</p></td>
+              </tr>
+              <tr>
+                <td>Type here</td>
+                <td>Type here</td>
+                <td><p style="margin-top: 15px">Primer Name Here</p></td>
+              </tr>
+            </table>
+          </div>
+        </b-tab>
 
-    <div class="overflow-auto order-table">
-      <table class="table mt-4">
-        <tr class="table-header-row">
-          <th>Name</th>
-          <th>Sequence</th>
-        </tr>
-        <tr>
-          <td>Type here</td>
-          <td><p style="margin-top: 15px">Type Here</p></td>
-        </tr>
-        <tr>
-          <td>Type here</td>
-          <td><p style="margin-top: 15px">Type Here</p></td>
-        </tr>
-        <tr>
-          <td>Type here</td>
-          <td><p style="margin-top: 15px">Type Here</p></td>
-        </tr>
-      </table>
+        <b-tab title="Others">
+          
+
+          <div class="overflow-auto order-table">
+            <h3 class="mt-4">Other Information</h3>
+            <table class="table mt-4">
+              <tr class="table-header-row">
+                <th>Amplicon Insert Size</th>
+                <th>Plasmid Name/Backbone</th>
+              </tr>
+              <tr>
+                <td>Size here</td>
+                <td><p style="margin-top: 15px">Name here</p></td>
+              </tr>
+              <tr>
+                <td>Size here</td>
+                <td><p style="margin-top: 15px">Name here</p></td>
+              </tr>
+              <tr>
+                <td>Size here</td>
+                <td><p style="margin-top: 15px">Name here</p></td>
+              </tr>
+            </table>
+          </div>
+        </b-tab>
+      </b-tabs>
     </div>
 
     <div class="order-details-card comments-card">
@@ -325,7 +338,6 @@
 </template>
 
 <script>
-
 export default {
   methods: {
     openUpdateLabStageModal() {
@@ -474,9 +486,17 @@ tr:hover {
   /* height: 10px; */
 }
 
+.tab-nav {
+  background-color: red !important;
+}
+
+.active-nav-header {
+  color: green !important;
+}
+
 @media (max-width: 500px) {
-  .order-table{
-      font-size: 14px;
+  .order-table {
+    font-size: 14px;
   }
 }
 </style>

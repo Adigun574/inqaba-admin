@@ -50,4 +50,18 @@ export default {
 /* ::-webkit-scrollbar-thumb:hover {
   background: #555;
 } */
+
+.order-tab-nav{
+  background-color: white !important;
+  color: #8C8C8C !important;
+  border-bottom: 2px solid #BDBDBD !important;
+}
+.active-nav-header{
+  border: none !important;
+  border-bottom: 2px solid #32B308 !important;
+  font-weight: bolder !important;
+}
+.nav-justified .nav-item .nav-link{
+  color: #BDBDBD;
+}
 </style>

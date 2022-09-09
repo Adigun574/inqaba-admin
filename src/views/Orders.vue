@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Loader v-if="loading"/>
       <div class="d-flex" style="margin-bottom:30px">
           <p class="back-arrow-icon"><i class="fas fa-long-arrow-alt-left"></i></p>
           <p><b>Orders</b></p>
@@ -41,11 +42,17 @@
 <script>
 import axios from 'axios';
 import { baseUrl } from '../utils/baseUrl';
+import Loader from '../components/Loader.vue';
+
 
 export default {
+    components:{
+        Loader
+    },
     data() {
         return {
-            orders: []
+            orders: [],
+            loading: false
         }
     },
     created() {
@@ -56,13 +63,16 @@ export default {
             this.$router.push(`/admin/orders/${orderId}`)
         },
         getOrders(){
+            this.loading = true
             axios.get(`${baseUrl}admin/order?pageSize=6&page=1`)
             .then(res=>{
                 this.orders = res.data.data.orders
+                this.loading = false
                 // console.log(this.orders)
             })
             .catch(err =>{
                 console.log(err)
+                this.loading = false
             })
         },
     }

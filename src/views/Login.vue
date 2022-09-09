@@ -1,6 +1,35 @@
 <template>
 <div style="background-color: #f4f4f4;">
-    <Navbar/>
+    <!-- <Navbar/> -->
+
+
+    <div>
+        <div class="p-4 pt-3">
+      <div class="d-flex align-items-center justify-content-between">
+        <div class="d-flex">
+          
+          <div class="d-flex brand-name-img">
+            <img src="../assets/inqaba_logo_round.png" height="50px" />
+            <h6
+              
+              style="margin-left: 20px; font-weight: bolder; color:#32B308; position:relative; top:5px;"
+            >
+              SANGER SEQUENCING<br />
+              INFORMATION FORM
+            </h6>
+            
+          </div>
+        </div>
+
+        
+
+        
+      </div>
+    </div>
+    </div>
+    <!--  -->
+
+
     <div class="login-page">
         <div class="d-flex">
             <div>

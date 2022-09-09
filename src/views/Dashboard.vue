@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Loader v-if="loading"/>
     <div class="d-flex">
       <div class="search-icon-div">
         <p><i class="fa fa-search search-icon"></i></p>
@@ -29,27 +30,17 @@
         <table class="table mt-4">
         <tr class="table-header-row">
             <th>Order ID</th>
-            <th>Client Name/Inst.</th>
+            <th>Client Name</th>
+            <th>Institute</th>
             <th>Order Date</th>
             <th></th>
         </tr>
-        <tr>
-            <td>REF/PS01/2022/001</td>
-            <td>Bayo Ojo</td>
-            <td>11/11/2018</td>
-            <td><p style="margin-top:15px" @click="viewOrder(1)"><span class="view-btn">View</span></p></td>
-        </tr>
-        <tr>
-            <td>REF/PS01/2022/001</td>
-            <td>Bayo Ojo</td>
-            <td>11/11/2018</td>
-            <td><p style="margin-top:15px" @click="viewOrder(1)"><span class="view-btn">View</span></p></td>
-        </tr>
-        <tr>
-            <td>REF/PS01/2022/001</td>
-            <td>Bayo Ojo</td>
-            <td>11/11/2018</td>
-            <td><p style="margin-top:15px" @click="viewOrder(1)"><span class="view-btn">View</span></p></td>
+        <tr v-for="order in orders" :key="order.id">
+            <td>{{order.orderTag}}</td>
+            <td>{{order.user.name}}</td>
+            <td>{{order.user.institute}}</td>
+            <td>{{order.created_at.split('T')[0]}}</td>
+            <td><p style="margin-top:15px" @click="viewOrder(order.id)"><span class="view-btn">View</span></p></td>
         </tr>
         </table>
     </div>
@@ -61,14 +52,43 @@
 </template>
 
 <script>
+import axios from "axios";
+import { baseUrl } from "../utils/baseUrl";
+import Loader from '../components/Loader.vue';
+
+
 export default {
+    components:{
+        Loader
+    },
+    data(){
+        return{
+            orders: [],
+            loading: false
+        }
+    },
+    created(){
+        this.getOrders()
+    },
     methods:{
         goToOrders(){
             this.$router.push('/admin/orders')
         },
         viewOrder(orderId){
             this.$router.push(`/admin/orders/${orderId}`)
-        }
+        },
+        getOrders(){
+            this.loading = true
+            axios.get(`${baseUrl}admin/order?pageSize=3&page=1`)
+            .then(res=>{
+                this.orders = res.data.data.orders
+                this.loading = false
+            })
+            .catch(err =>{
+                console.log(err)
+                this.loading = false
+            })
+        },
     }
 };
 </script>

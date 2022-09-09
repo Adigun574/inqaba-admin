@@ -1,32 +1,92 @@
 <template>
-  <div class="p-4 pt-0 overflow-hidden">
-    <div class="d-flex" style="margin-bottom: 30px">
-      <p class="back-arrow-icon"><i class="fas fa-long-arrow-alt-left"></i></p>
-      <p><b>Dashboard</b></p>
-    </div>
+    <div>
+        <div class="p-4 pt-0 overflow-hidden">
+            <div class="d-flex" style="margin-bottom: 30px">
+            <p class="back-arrow-icon"><i class="fas fa-long-arrow-alt-left"></i></p>
+            <p><b>Dashboard</b></p>
+            </div>
 
-    <div class="form-group new-password-div">
-        <label class="form-label">New Password</label>
-        <input class="form-control" type="password">
-    </div>
+            <div class="form-group new-password-div">
+                <label class="form-label">New Password</label>
+                <input class="form-control" type="password" v-model="newPassword">
+            </div>
 
-    <hr>
+            <hr>
 
-    <div class="form-group confirm-password-div">
-        <label class="form-label">Confirm Password</label>
-        <input class="form-control" type="password">
-    </div>
+            <div class="form-group confirm-password-div">
+                <label class="form-label">Confirm Password</label>
+                <input class="form-control" type="password" v-model="newPassword2">
+            </div>
 
-    <div class="btn-div">
-        <button class="cancel-btn">Cancel</button>
-        <button class="login-btn">Change Password</button>
+            <div class="btn-div">
+                <button class="cancel-btn">Cancel</button>
+                <button v-if="!changing" class="login-btn" @click="changePassword()">Change Password</button>
+                <div v-if="changing" style="display:flex; justify-content:center">
+                    <div class="spinner-border text-success" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
     </div>
-    
-  </div>
 </template>
 
 <script>
-export default {};
+import axios from 'axios';
+import { baseUrl } from '../utils/baseUrl';
+import Loader from '@/components/Loader.vue';
+
+export default {
+  components: { Loader },
+    data(){
+        return{
+            newPassword: '',
+            newPassword2: '',
+            changing: false
+        }
+    },
+    methods:{
+        makeToast(message, type){
+                    this.$toast.open({
+                        message: message || '',
+                        type,
+                        position: 'top-right',
+                        duration: 6000
+                    });
+        },
+
+        changePassword(){
+            if(this.newPassword.length < 6){
+                this.makeToast('Password must be at least 6 characters long', 'error')
+                return
+            }
+            if(this.newPassword != this.newPassword2){
+                this.makeToast('Passwords do not match', 'error')
+                return
+            }
+
+            this.changing = true
+
+            let changePasswordPayload = {
+                newPassword: this.newPassword,
+                newPassword2: this.newPassword2
+            }
+
+            console.log(this.changePasswordPayload)
+
+            axios.post(`${baseUrl}admin/change-password`,this.changePasswordPayload)
+                .then(res=>{
+                    this.makeToast(res?.data?.message, 'success')
+                    this.changing = false
+                })
+                .catch(err =>{
+                    this.makeToast('Something went wrong', 'error')
+                    this.changing = false
+                })
+        }
+    }
+};
 </script>
 
 <style scoped>

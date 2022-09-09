@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Loader v-if="loading"/>
     <div class="d-flex">
       <p class="breadcrumb-home">Home</p>
       <p class="breadcrumb-arrow"><i class="fa fas fa-angle-right"></i></p>
@@ -41,7 +42,7 @@
         <div class="col-sm-3">
           <div>
             <p class="card-title">Service Type:</p>
-            <p class="card-value">{{ orderDetails?.serviceType }}</p>
+            <p class="card-value text-capitalize">{{ orderDetails?.serviceType | removeUnderscore }}</p>
           </div>
         </div>
       </div>
@@ -57,7 +58,7 @@
       <div class="col-sm-3">
         <div class="order-details-card">
           <p class="institute-title">Collection of Sample</p>
-          <p class="institute-value">{{ orderDetails?.sampleCollection }}</p>
+          <p class="institute-value text-capitalize">{{ orderDetails?.sampleCollection }}</p>
         </div>
       </div>
     </div>
@@ -139,7 +140,7 @@
                     {{sampleInfo.status}}
                     <i
                       class="fa fa-edit cursor-pointer"
-                      @click="openUpdateLabStageModal(sampleInfo.id)"
+                      @click="openUpdateLabStageModal(sampleInfo)"
                     ></i>
                   </p>
                 </td>
@@ -234,25 +235,30 @@
             <h4 class="text-center mb-4">Select Lab Stage</h4>
 
             <div class="form-group mb-4">
-              <label class="form-label">Label Stage</label>
-              <select class="form-control pt-3 pb-3">
+              <label class="form-label">Lab Stage</label>
+              <select class="form-control pt-3 pb-3" v-model="updateLabStagePayload.newStage">
                 <option>Select One</option>
-                <option>Stage A</option>
-                <option>Stage B</option>
-                <option>Stage C</option>
+                <option value="Stage A">Stage A</option>
+                <option value="Stage B">Stage B</option>
+                <option value="Stage C">Stage C</option>
               </select>
             </div>
 
             <div class="form-group">
               <label class="form-label">Comment</label>
-              <textarea class="form-control" rows="5"></textarea>
+              <textarea v-model="updateLabStagePayload.message" class="form-control" rows="5"></textarea>
             </div>
 
             <div class="d-flex justify-content-end mt-4">
-              <button class="cancel-bt mr-">Cancel</button>
-              <button class="login-btn" style="margin-top: 30px">
+              <button class="cancel-btn mr-4" @click="openModal('', 'update-lab-stage-modal')">Cancel</button>
+              <button v-if="!updatingLabStage" class="login-btn" style="margin-top: 30px" @click="updateLabStage()">
                 Update Lab Stage
               </button>
+              <div v-if="updatingLabStage" style="display:flex; justify-content:center">
+                <div class="spinner-border text-success" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -265,15 +271,37 @@
 <script>
 import axios from "axios";
 import { baseUrl } from "../utils/baseUrl";
+import Loader from '../components/Loader.vue';
+
 
 export default {
+    filters:{
+        removeUnderscore: function (value) {
+            if (!value) return ''
+            value = value.toString()
+            return value.split('_').join(' ')
+        }
+    },
+    components:{
+        Loader
+    },
   data() {
     return {
       orderDetails: null,
       orderId: null,
       sampleInfos: [],
       inqabaPrimers: [],
-      personalPrimers: []
+      personalPrimers: [],
+      updateLabStagePayload: {
+        orderId: "",
+        sampleId: "",
+        peviousStage: "",
+        newStage: "",
+        message: ""
+      },
+      selectedSampleInfo: null,
+      updatingLabStage: false,
+      loading: false
     };
   },
   created() {
@@ -284,9 +312,47 @@ export default {
     this.getPersonalPrimers();
   },
   methods: {
-    openUpdateLabStageModal(sampleInfoId) {
-      this.openModal("update-lab-stage-modal");
+    makeToast(message, type){
+        this.$toast.open({
+            message: message || '',
+            type,
+            position: 'top-right',
+            duration: 6000
+        });
     },
+    openUpdateLabStageModal(sampleInfo) {
+        this.selectedSampleInfo = sampleInfo
+        this.openModal("update-lab-stage-modal");
+    },
+
+    updateLabStage(){
+        if(!this.updateLabStagePayload.newStage || !this.updateLabStagePayload.message){
+            this.makeToast('All fields are required', 'error')
+            return
+        }
+        this.updatingLabStage = true
+        this.updateLabStagePayload.orderId = this.orderId
+        this.updateLabStagePayload.sampleId = this.selectedSampleInfo.id
+        this.updateLabStagePayload.peviousStage = this.selectedSampleInfo.status
+        // console.log(this.updateLabStagePayload)
+        // return
+        axios
+        .put(`${baseUrl}admin/sample/update-lab-stage`, this.updateLabStagePayload)
+        .then((res) => {
+            console.log(res)
+            this.openModal('', 'update-lab-stage-modal')
+            this.makeToast(`${res.data.message}`, 'success')
+            this.getSampleInformation()
+            this.updatingLabStage = false
+        })
+        .catch((err) => {
+            console.log(err);
+            this.openModal('', 'update-lab-stage-modal')
+            this.makeToast('Something went wrong', 'error')
+            this.updatingLabStage = false
+        });
+    },
+
     openModal(modalToOpen, modalToClose) {
       if (modalToClose) {
         $(`#${modalToClose}`).modal("hide");
@@ -296,14 +362,17 @@ export default {
       }
     },
     getOrderDetails() {
+        this.loading = true
       axios
         .get(`${baseUrl}admin/order/${this.orderId}`)
         .then((res) => {
           this.orderDetails = res.data.data.orderDetails;
+          this.loading = false
         //   console.log(this.orderDetails);
         })
         .catch((err) => {
           console.log(err);
+          this.loading = false
         });
     },
     getRouteDetails() {

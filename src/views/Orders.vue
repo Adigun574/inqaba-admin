@@ -64,8 +64,10 @@ export default {
         },
         getOrders(){
             this.loading = true
-            axios.get(`${baseUrl}admin/order?pageSize=6&page=1`)
+            // axios.get(`${baseUrl}admin/order?pageSize=15&page=1`)
+            axios.get(`${baseUrl}admin/order`)
             .then(res=>{
+                console.log(res)
                 this.orders = res.data.data.orders
                 this.loading = false
                 // console.log(this.orders)

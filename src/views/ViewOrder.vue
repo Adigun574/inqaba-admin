@@ -28,7 +28,7 @@
         <div class="col-sm-3">
           <div>
             <p class="card-title">Client Name:</p>
-            <p class="card-value">{{ orderDetails?.clientName }}</p>
+            <p class="card-value text-capitalize">{{ orderDetails?.user?.name }}</p>
           </div>
         </div>
         <div class="col-sm-3">
@@ -52,7 +52,7 @@
       <div class="col-sm-9">
         <div class="order-details-card">
           <p class="institute-title">Institute</p>
-          <p class="institute-value">{{ orderDetails?.institute }}</p>
+          <p class="institute-value text-capitalize">{{ orderDetails?.user?.institute }}</p>
         </div>
       </div>
       <div class="col-sm-3">
@@ -152,6 +152,21 @@
         <b-tab title="Primer">
 
           <div class="overflow-auto order-table">
+            <table class="table mt-4">
+              <tr class="table-header-row">
+                <th>Forward</th>
+                <th>Reverse</th>
+                <th>Internal Sequencing Primer Name</th>
+              </tr>
+              <tr v-for="sampleInfo in sampleInfos" :key="sampleInfo.id">
+                <td>{{sampleInfo.forwardPrimer}}</td>
+                <td><p style="margin-top: 15px">{{sampleInfo.reversePrimer}}</p></td>
+                <td>{{sampleInfo.internalSequencingPrimer}}</td>
+              </tr>
+            </table>
+          </div>
+
+          <div class="overflow-auto order-table">
             <h3 class="mt-4">Inqaba Primer</h3>
             <table class="table mt-4">
               <tr class="table-header-row">
@@ -188,7 +203,7 @@
             <table class="table mt-4">
               <tr class="table-header-row">
                 <th>Amplicon Insert Size</th>
-                <th>Plasmid Name/Backbone</th>
+                <th>Annealing Temperature</th>
               </tr>
               <tr v-for="sampleInfo in sampleInfos" :key="sampleInfo.id">
                 <td>{{sampleInfo.ampliconSize}}</td>
@@ -368,7 +383,7 @@ export default {
         .then((res) => {
           this.orderDetails = res.data.data.orderDetails;
           this.loading = false
-        //   console.log(this.orderDetails);
+          console.log(this.orderDetails);
         })
         .catch((err) => {
           console.log(err);
@@ -383,7 +398,7 @@ export default {
         .get(`${baseUrl}admin/order/sampleInfo/${this.orderId}`)
         .then((res) => {
             this.sampleInfos = res.data.data.sampleInfo;
-            // console.log(this.sampleInfos)
+            console.log(this.sampleInfos)
         })
         .catch((err) => {
           console.log(err);
@@ -393,7 +408,7 @@ export default {
       axios
         .get(`${baseUrl}admin/order/primers/inqaba/${this.orderId}`)
         .then((res) => {
-            // console.log(res)
+            console.log(res)
             this.inqabaPrimers = res.data.data.inqabaPrimers;
         })
         .catch((err) => {
@@ -404,7 +419,7 @@ export default {
       axios
         .get(`${baseUrl}admin/order/primers/personal/${this.orderId}`)
         .then((res) => {
-            // console.log(res)
+            console.log(res)
             this.personalPrimers = res.data.data.personalPrimers;
             // console.log(this.personalPrimers)
         })

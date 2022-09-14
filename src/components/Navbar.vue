@@ -40,7 +40,7 @@
               width="35px"
               style="border-radius: 50%"
             />
-            <p class="profile-name">John Doe</p>
+            <p class="profile-name text-capitalize">{{userDetails.name}}</p>
             <p class="profile-caret"><i class="fa fa-caret-down"></i></p>
           </div>
         </div>
@@ -54,7 +54,7 @@
               width="20px"
               style="border-radius: 50%"
             />
-            <p class="profile-name">John Doe</p>
+            <p class="profile-name text-capitalize">{{userDetails.name}}</p>
             <p class="profile-caret"><i class="fa fa-caret-down"></i></p>
           </div>
         </div>
@@ -68,10 +68,11 @@
 export default {
   data() {
     return {
-      userDetails: localStorage.getItem("inqaba-user"),
+      userDetails: JSON.parse(localStorage.getItem("inqaba-user")),
     };
   },
-  created() {},
+  created() {
+  },
   methods: {
     toggleSidebar() {
       this.$emit("toggleSidebar", null);

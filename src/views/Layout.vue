@@ -14,11 +14,11 @@
               ><i class="fa fa-th"></i> Orders</router-link
             >
           </p>
-          <p>
+          <!-- <p>
             <router-link to="/admin/profile" active-link="active-link"
               ><i class="fa fa-th"></i> Admin Profile</router-link
             >
-          </p>
+          </p> -->
           <p>
             <router-link to="/admin/change-password" active-link="active-link"
               ><i class="fa fa-th"></i> Password</router-link

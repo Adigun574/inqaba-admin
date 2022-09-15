@@ -61,9 +61,9 @@
         <div class="order-details-card">
           <p class="institute-title">Status</p>
           <p class="institute-value text-capitalize">
-            <span class="text-primary" v-if="orderDetails.status.toLowerCase() === 'processing'">{{ orderDetails?.status }}</span>
-            <span class="text-success" v-if="orderDetails.status.toLowerCase() === 'success'">{{ orderDetails?.status }}</span>
-            <span class="text-danger" v-if="orderDetails.status.toLowerCase() === 'failed'">{{ orderDetails?.status }}</span>
+            <span class="text-primary" v-if="orderDetails?.status.toLowerCase() === 'processing'">{{ orderDetails?.status }}</span>
+            <span class="text-success" v-if="orderDetails?.status.toLowerCase() === 'success'">{{ orderDetails?.status }}</span>
+            <span class="text-danger" v-if="orderDetails?.status.toLowerCase() === 'failed'">{{ orderDetails?.status }}</span>
           </p>
         </div>
       </div>

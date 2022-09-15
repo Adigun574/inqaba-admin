@@ -63,7 +63,7 @@
 
         
                     <div class="mt-4">
-                        <button v-if="!loggingIn" class="login-btn" @click="login()">LOGIN <span><i class="fa fa-arrow-right"></i></span></button>
+                        <button v-if="!loggingIn" class="login-btn" @click="login()">LOGIN <span><i class="fa fa-arrow-right" style="color:white;"></i></span></button>
                         <div v-if="loggingIn" style="display:flex; justify-content:center">
                             <div class="spinner-border text-success" role="status">
                                 <span class="sr-only">Loading...</span>

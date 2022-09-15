@@ -2,7 +2,11 @@
   <div>
     <Loader v-if="loading"/>
       <div class="d-flex" style="margin-bottom:30px">
-          <p class="back-arrow-icon"><i class="fas fa-long-arrow-alt-left"></i></p>
+          <p class="back-arrow-icon">
+            <router-link to="/admin/dashboard">
+              <i class="fas fa-long-arrow-alt-left" style="color: #32B308; cursor: pointer;"></i>
+            </router-link>
+          </p>
           <p><b>Orders</b></p>
       </div>
 
@@ -13,7 +17,9 @@
       <input
         class="search-input"
         type="search"
-        placeholder="Order ID, Status, Client Name, Date"
+        placeholder="Order ID, Client Name"
+        v-model="searchKeyword"
+        @input="searchOrders"
       />
     </div>
 
@@ -26,7 +32,7 @@
             <th>Order Date</th>
             <th></th>
         </tr>
-        <tr v-for="order in orders" :key="order.id">
+        <tr v-for="order in displayedOrders" :key="order.id">
             <td>{{order.orderTag}}</td>
             <td>{{order.user.name}}</td>
             <td>{{order.user.institute}}</td>
@@ -52,7 +58,9 @@ export default {
     data() {
         return {
             orders: [],
-            loading: false
+            loading: false,
+            searchKeyword: '',
+            displayedOrders: ''
         }
     },
     created() {
@@ -69,6 +77,7 @@ export default {
             .then(res=>{
                 console.log(res)
                 this.orders = res.data.data.orders
+                this.displayedOrders = [...this.orders]
                 this.loading = false
                 // console.log(this.orders)
             })
@@ -77,6 +86,13 @@ export default {
                 this.loading = false
             })
         },
+        searchOrders() {
+          if(!this.searchKeyword){
+            this.displayedOrders = [...this.orders]
+            return
+          }
+          this.displayedOrders = this.orders.filter(order => order.orderTag.toLowerCase().includes(this.searchKeyword.toLowerCase()) || order.user.name.toLowerCase().includes(this.searchKeyword.toLowerCase()))
+        }
     }
 };
 </script>
@@ -86,8 +102,8 @@ export default {
   outline: none;
 }
 .back-arrow-icon{
-    margin-right:20px; 
-    color:#32B308
+  margin-right:20px; 
+  color:#32B308 !important;
 }
 .search-icon-div {
   background-color: white;

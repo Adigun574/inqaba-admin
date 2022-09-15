@@ -1,7 +1,7 @@
 <template>
   <div>
     <Loader v-if="loading"/>
-    <div class="d-flex">
+    <!-- <div class="d-flex">
       <div class="search-icon-div">
         <p><i class="fa fa-search search-icon"></i></p>
       </div>
@@ -10,7 +10,7 @@
         type="search"
         placeholder="Order ID, Status, Client Name, Date"
       />
-    </div>
+    </div> -->
 
     <div class="dashboard-card">
       <div>

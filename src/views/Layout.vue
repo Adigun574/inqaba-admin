@@ -97,6 +97,7 @@ export default {
         this.$router.push('/')
         localStorage.removeItem('inqaba-token')
         localStorage.removeItem('inqaba-user')
+        localStorage.removeItem('userEmail')
     }
   },
 };
@@ -185,6 +186,7 @@ export default {
 .hide-sidebar {
   transform: translateX(-300px);
 }
+
 
 @media (max-width: 500px) {
   #content-body {

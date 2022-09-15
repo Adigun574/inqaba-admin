@@ -33,13 +33,14 @@
 
         <div class="profile-menu-lg">
           <div class="d-flex cursor-pointer mr-4">
-            <img
+            <!-- <img
               class="profile-img"
               src="../assets/scientist.jpg"
               height="35px"
               width="35px"
               style="border-radius: 50%"
-            />
+            /> -->
+            <p><i class="fa fa-user profile-picture"></i></p>
             <p class="profile-name text-capitalize">{{userDetails.name}}</p>
             <p class="profile-caret"><i class="fa fa-caret-down"></i></p>
           </div>
@@ -47,13 +48,14 @@
 
         <div class="profile-menu-sm">
           <div class="d-flex cursor-pointer mr-4 align-items-center">
-            <img
+            <!-- <img
               class="profile-img"
               src="../assets/scientist.jpg"
               height="20px"
               width="20px"
               style="border-radius: 50%"
-            />
+            /> -->
+            <p><i class="fa fa-user profile-picture-sm"></i></p>
             <p class="profile-name text-capitalize">{{userDetails.name}}</p>
             <p class="profile-caret"><i class="fa fa-caret-down"></i></p>
           </div>
@@ -142,6 +144,25 @@ export default {
 }
 .profile-menu-sm {
   display: none;
+}
+
+.profile-picture{
+  border-radius: 50%; 
+  padding:5px; 
+  background-color: #565656; 
+  color: white;
+  position: relative;
+  top: 5px;
+}
+
+.profile-picture-sm{
+  border-radius: 50%; 
+  padding:5px; 
+  background-color: #565656; 
+  color: white;
+  font-size: 10px;
+  position: relative;
+  top: 3px;
 }
 
 @media (max-width: 600px) {

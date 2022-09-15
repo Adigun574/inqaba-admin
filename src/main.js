@@ -37,6 +37,21 @@ axios.interceptors.request.use((request) => {
     return request
 })
 
+axios.interceptors.response.use(function (response) {
+  return response;
+}, function (error) {
+  if(error.response.status === 401){
+    logoutUser()
+  }
+});
+
+const logoutUser = () => {
+  window.location.href = ''
+  localStorage.removeItem('inqaba-token')
+  localStorage.removeItem('inqaba-user')
+  localStorage.removeItem('userEmail')
+}
+
 new Vue({
   router,
   render: h => h(App),

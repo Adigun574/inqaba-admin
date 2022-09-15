@@ -2,11 +2,13 @@
   <div>
     <Loader v-if="loading"/>
     <div class="d-flex">
-      <p class="breadcrumb-home">Home</p>
+      <p class="breadcrumb-home cursor-pointer">
+        <router-link to="/admin/orders">Orders</router-link>
+      </p>
       <p class="breadcrumb-arrow"><i class="fa fas fa-angle-right"></i></p>
-      <p class="breadcrumb-id">REF/PS01/2022/001</p>
+      <p class="breadcrumb-id">{{ orderDetails?.orderTag }}</p>
     </div>
-    <div class="d-flex">
+    <!-- <div class="d-flex">
       <div class="search-icon-div">
         <p><i class="fa fa-search search-icon"></i></p>
       </div>
@@ -15,7 +17,7 @@
         type="search"
         placeholder="Order ID, Status, Client Name, Date"
       />
-    </div>
+    </div> -->
 
     <div class="order-details-card">
       <div class="row">
@@ -49,13 +51,23 @@
     </div>
 
     <div class="row">
-      <div class="col-sm-9">
+      <div class="col-sm-4">
         <div class="order-details-card">
           <p class="institute-title">Institute</p>
           <p class="institute-value text-capitalize">{{ orderDetails?.user?.institute }}</p>
         </div>
       </div>
-      <div class="col-sm-3">
+      <div class="col-sm-4">
+        <div class="order-details-card">
+          <p class="institute-title">Status</p>
+          <p class="institute-value text-capitalize">
+            <span class="text-primary" v-if="orderDetails.status.toLowerCase() === 'processing'">{{ orderDetails?.status }}</span>
+            <span class="text-success" v-if="orderDetails.status.toLowerCase() === 'success'">{{ orderDetails?.status }}</span>
+            <span class="text-danger" v-if="orderDetails.status.toLowerCase() === 'failed'">{{ orderDetails?.status }}</span>
+          </p>
+        </div>
+      </div>
+      <div class="col-sm-4">
         <div class="order-details-card">
           <p class="institute-title">Collection of Sample</p>
           <p class="institute-value text-capitalize">{{ orderDetails?.sampleCollection }}</p>
@@ -223,7 +235,7 @@
     </div>
 
     <div class="btn-div">
-      <button class="cancel-btn">Cancel</button>
+      <button class="cancel-btn">Close</button>
       <button class="login-btn">Update Order</button>
     </div>
 
@@ -568,6 +580,15 @@ tr:hover {
 
 .active-nav-header {
   color: green !important;
+}
+
+a{
+  text-decoration: none;
+  color: #565656;
+}
+
+a:hover{
+  color: #565656;
 }
 
 @media (max-width: 500px) {

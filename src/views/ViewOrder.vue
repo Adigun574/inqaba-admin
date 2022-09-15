@@ -236,7 +236,62 @@
 
     <div class="btn-div">
       <button class="cancel-btn">Close</button>
-      <button class="login-btn">Update Order</button>
+      <button class="login-btn" @click="openModal('update-order-modal', '')">Update Order</button>
+    </div>
+
+    <!--  -->
+    <div
+      class="modal fade"
+      id="update-order-modal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalCenterTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="p-4">
+            <div class="d-flex justify-content-end">
+              <p
+                class="close-icon cursor-pointer"
+                @click="openModal('', 'update-order-modal')"
+              >
+                <i class="fa fa-times"></i>
+              </p>
+            </div>
+            <h4 class="text-center mb-4">Select Status</h4>
+
+            <p>Current Status: <b class="text-capitalize">{{orderDetails?.status}}</b></p>
+
+            <div class="form-group mb-4">
+              <label class="form-label">Lab Stage</label>
+              <select class="form-control pt-3 pb-3" v-model="updateStatusPayload.newStatus">
+                <option>Select One</option>
+                <option value="processing">Processing</option>
+                <option value="success">Success</option>
+                <option value="failed">Failed</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Comment</label>
+              <textarea v-model="updateStatusPayload.message" class="form-control" rows="5"></textarea>
+            </div>
+
+            <div class="d-flex justify-content-end mt-4">
+              <button class="cancel-btn mr-4" @click="openModal('', 'update-order-modal')">Cancel</button>
+              <button v-if="!updatingStatus" class="login-btn" style="margin-top: 30px" @click="updateStatus()">
+                Update Status
+              </button>
+              <div v-if="updatingStatus" style="display:flex; justify-content:center">
+                <div class="spinner-border text-success" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!--  -->
@@ -328,7 +383,14 @@ export default {
       },
       selectedSampleInfo: null,
       updatingLabStage: false,
-      loading: false
+      loading: false,
+      updatingStatus: false,
+      updateStatusPayload:{
+        orderId: "",
+        previousStatus: "",
+        newStatus: "",
+        message: ""
+      }
     };
   },
   created() {
@@ -377,6 +439,32 @@ export default {
             this.openModal('', 'update-lab-stage-modal')
             this.makeToast('Something went wrong', 'error')
             this.updatingLabStage = false
+        });
+    },
+
+    updateStatus(){
+      if(!this.updateStatusPayload.newStatus){
+        this.makeToast('Select a new status', 'error')
+        return;
+      }
+      this.updatingStatus = true;
+      this.updateStatusPayload.orderId = this.orderId
+      this.updateStatusPayload.previousStatus = this.orderDetails.status
+      console.log(this.updateStatusPayload)
+      axios
+        .put(`${baseUrl}admin/order/update`, this.updateStatusPayload)
+        .then((res) => {
+            console.log(res)
+            this.openModal('', 'update-order-modal')
+            this.makeToast(`${res.data.message}`, 'success')
+            this.getOrderDetails()
+            this.updatingStatus = false
+        })
+        .catch((err) => {
+            console.log(err);
+            this.openModal('', 'update-order-modal')
+            this.makeToast('Something went wrong', 'error')
+            this.updatingStatus = false
         });
     },
 

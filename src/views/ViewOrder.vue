@@ -227,15 +227,7 @@
       </b-tabs>
     </div>
 
-    <div class="order-details-card comments-card">
-      <p>Comments</p>
-      <p class="title">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam, quae?
-      </p>
-    </div>
-
     <div class="btn-div">
-      <button class="cancel-btn">Close</button>
       <button class="login-btn" @click="openModal('update-order-modal', '')">Update Order</button>
     </div>
 

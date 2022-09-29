@@ -31,7 +31,7 @@
         <tr class="table-header-row">
             <th>Order ID</th>
             <th>Client Name</th>
-            <th>Institute</th>
+            <th>Institution</th>
             <th>Order Date</th>
             <th></th>
         </tr>

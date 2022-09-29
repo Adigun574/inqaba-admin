@@ -53,7 +53,7 @@
     <div class="row">
       <div class="col-sm-4">
         <div class="order-details-card">
-          <p class="institute-title">Institute</p>
+          <p class="institute-title">Institution</p>
           <p class="institute-value text-capitalize">{{ orderDetails?.user?.institute }}</p>
         </div>
       </div>

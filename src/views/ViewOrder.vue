@@ -256,7 +256,7 @@
             <p>Current Status: <b class="text-capitalize">{{orderDetails?.status}}</b></p>
 
             <div class="form-group mb-4">
-              <label class="form-label">Lab Stage</label>
+              <label class="form-label">Status</label>
               <select class="form-control pt-3 pb-3" v-model="updateStatusPayload.newStatus">
                 <option>Select One</option>
                 <option value="processing">Processing</option>
@@ -312,9 +312,19 @@
               <label class="form-label">Lab Stage</label>
               <select class="form-control pt-3 pb-3" v-model="updateLabStagePayload.newStage">
                 <option>Select One</option>
-                <option value="Stage A">Stage A</option>
-                <option value="Stage B">Stage B</option>
-                <option value="Stage C">Stage C</option>
+                <option :value="Constants.LabStages.SAMPLE_SIGN_IN">{{Constants.LabStages.SAMPLE_SIGN_IN}}</option>
+                <option :value="Constants.LabStages.NUCLEIC_ACID_EXTRACTION">{{Constants.LabStages.NUCLEIC_ACID_EXTRACTION}}</option>
+                <option :value="Constants.LabStages.QUALITY_CHECK">{{Constants.LabStages.QUALITY_CHECK}}</option>
+                <option :value="Constants.LabStages.PCR_AMPLIFICATION">{{Constants.LabStages.PCR_AMPLIFICATION}}</option>
+                <option :value="Constants.LabStages.GEL_EXTRACTION">{{Constants.LabStages.GEL_EXTRACTION}}</option>
+                <option :value="Constants.LabStages.EXOSAP_PURIFICATION">{{Constants.LabStages.EXOSAP_PURIFICATION}}</option>
+                <option :value="Constants.LabStages.CYCLE_SEQUENCING_QUEUE">{{Constants.LabStages.CYCLE_SEQUENCING_QUEUE}}</option>
+                <option :value="Constants.LabStages.CYCLE_SEQUENCING">{{Constants.LabStages.CYCLE_SEQUENCING}}</option>
+                <option :value="Constants.LabStages.PRECFIPITATION">{{Constants.LabStages.PRECFIPITATION}}</option>
+                <option :value="Constants.LabStages.INJECTTION">{{Constants.LabStages.INJECTTION}}</option>
+                <option :value="Constants.LabStages.DATA_QUALITY_CHECK">{{Constants.LabStages.DATA_QUALITY_CHECK}}</option>
+                <option :value="Constants.LabStages.DATA_ANALYSIS">{{Constants.LabStages.DATA_ANALYSIS}}</option>
+
               </select>
             </div>
 
@@ -324,7 +334,7 @@
             </div>
 
             <div class="d-flex justify-content-end mt-4">
-              <button class="cancel-btn mr-4" @click="openModal('', 'update-lab-stage-modal')">Cancel</button>
+              <button class="cancel-btn mr-4" style="margin-top: 30px" @click="openModal('', 'update-lab-stage-modal')">Cancel</button>
               <button v-if="!updatingLabStage" class="login-btn" style="margin-top: 30px" @click="updateLabStage()">
                 Update Lab Stage
               </button>
@@ -346,6 +356,7 @@
 import axios from "axios";
 import { baseUrl } from "../utils/baseUrl";
 import Loader from '../components/Loader.vue';
+import { LabStages } from '../utils/constants';
 
 
 export default {
@@ -369,7 +380,7 @@ export default {
       updateLabStagePayload: {
         orderId: "",
         sampleId: "",
-        peviousStage: "",
+        previousStage: "",
         newStage: "",
         message: ""
       },
@@ -382,6 +393,9 @@ export default {
         previousStatus: "",
         newStatus: "",
         message: ""
+      },
+      Constants: {
+        LabStages
       }
     };
   },
@@ -414,7 +428,7 @@ export default {
         this.updatingLabStage = true
         this.updateLabStagePayload.orderId = this.orderId
         this.updateLabStagePayload.sampleId = this.selectedSampleInfo.id
-        this.updateLabStagePayload.peviousStage = this.selectedSampleInfo.status
+        this.updateLabStagePayload.previousStage = this.selectedSampleInfo.status
         // console.log(this.updateLabStagePayload)
         // return
         axios
@@ -650,8 +664,6 @@ tr:hover {
 .cancel-btn {
   background-color: #f2f2f2;
   border: none;
-  /* padding: 10px 30px; */
-  /* height: 10px; */
 }
 
 .tab-nav {

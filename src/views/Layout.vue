@@ -62,6 +62,7 @@ export default {
       this.showSideBar();
     }
     // document.getElementById("toggle-button").click()
+    this.handleScreenResize()
   },
   methods: {
     setSidebar() {
@@ -92,6 +93,16 @@ export default {
       sidebar.classList.add("hide-sidebar");
 
       document.querySelector("#content-body").style.marginLeft = "0px";
+    },
+    handleScreenResize(){
+      window.addEventListener('resize', ()=>{
+        if(window.innerWidth <= 600){
+          this.hideSideBar()
+        }
+        else{
+          this.showSideBar()
+        }
+      });
     },
     logout(){
         this.$router.push('/')

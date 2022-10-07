@@ -28,6 +28,7 @@
         <tr class="table-header-row">
             <th>Order ID</th>
             <th>Client Name</th>
+            <th>Email</th>
             <th>Institute</th>
             <th>Order Date</th>
             <th></th>
@@ -35,6 +36,7 @@
         <tr v-for="order in displayedOrders" :key="order.id">
             <td>{{order.orderTag}}</td>
             <td>{{order.user.name}}</td>
+            <td>{{order?.user?.email}}</td>
             <td>{{order.user.institute}}</td>
             <td>{{order.created_at.split('T')[0]}}</td>
             <td><p style="margin-top:15px" @click="viewOrder(order.id)"><span class="view-btn">View</span></p></td>

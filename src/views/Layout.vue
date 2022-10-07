@@ -27,7 +27,7 @@
         </div>
       </div>
       <div class="logout-btn-div">
-        <p @click="logout()"><i class="fa fa-th"></i> Logout</p>
+        <p @click="logout()"><i class="fa fa-power-off"></i> Logout</p>
       </div>
     </div>
 

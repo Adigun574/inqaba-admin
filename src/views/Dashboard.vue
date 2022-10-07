@@ -1,18 +1,8 @@
 <template>
   <div>
     <Loader v-if="loading"/>
-    <!-- <div class="d-flex">
-      <div class="search-icon-div">
-        <p><i class="fa fa-search search-icon"></i></p>
-      </div>
-      <input
-        class="search-input"
-        type="search"
-        placeholder="Order ID, Status, Client Name, Date"
-      />
-    </div> -->
 
-    <div class="dashboard-card">
+    <!-- <div class="dashboard-card">
       <div>
         <h3 class="calendar-icon"><i class="fa fa-calendar-alt"></i></h3>
         <div>
@@ -23,6 +13,82 @@
       <div>
         <h1 class="orders-count">105</h1>
         <h3 class="orders-chart"><i class="fa fa-line-chart" style="color: #32B308"></i></h3>
+      </div>
+    </div> -->
+
+    <div>
+      <div class="row">
+        <div class="col-sm-3">
+
+          <div class="dashboard-card">
+            <div>
+              <h3 class="calendar-icon"><i class="fa fa-calendar-alt"></i></h3>
+              <div>
+                <p class="recent-orders">Recent Orders</p>
+                <div class="from-previous"><small>From Previous Week</small></div>
+              </div>
+            </div>
+            <div>
+              <h1 class="orders-count">{{metrics?.recent_orders}}</h1>
+              <h3 class="orders-chart"><i class="fa fa-history" style="color: #32B308"></i></h3>
+            </div>
+          </div>
+
+        </div>
+        
+         <div class="col-sm-3">
+          
+          <div class="dashboard-card">
+            <div>
+              <h3 class="calendar-icon"><i class="fa fa-calendar-alt"></i></h3>
+              <div>
+                <p class="recent-orders">Successful Orders</p>
+                <div class="from-previous"><small>From Previous Week</small></div>
+              </div>
+            </div>
+            <div>
+              <h1 class="orders-count">{{metrics?.successful_orders}}</h1>
+              <h3 class="orders-chart"><i class="fa fa-check" style="color: #32B308"></i></h3>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="col-sm-3">
+          
+          <div class="dashboard-card">
+            <div>
+              <h3 class="calendar-icon"><i class="fa fa-calendar-alt"></i></h3>
+              <div>
+                <p class="recent-orders">Processing Orders</p>
+                <div class="from-previous"><small>From Previous Week</small></div>
+              </div>
+            </div>
+            <div>
+              <h1 class="orders-count">{{metrics?.processing_orders}}</h1>
+              <h3 class="orders-chart"><i class="fa fa-spinner" style="color: #32B308"></i></h3>
+            </div>
+          </div>
+
+        </div>
+
+         <div class="col-sm-3">
+          
+          <div class="dashboard-card">
+            <div>
+              <h3 class="calendar-icon"><i class="fa fa-calendar-alt"></i></h3>
+              <div>
+                <p class="recent-orders">Failed Orders</p>
+                <div class="from-previous"><small>From Previous Week</small></div>
+              </div>
+            </div>
+            <div>
+              <h1 class="orders-count">{{metrics?.failed_orders}}</h1>
+              <h3 class="orders-chart"><i class="fa fa-exclamation-triangle text-danger"></i></h3>
+            </div>
+          </div>
+
+        </div>
       </div>
     </div>
 
@@ -64,11 +130,13 @@ export default {
     data(){
         return{
             orders: [],
-            loading: false
+            loading: false,
+            metrics: null
         }
     },
     created(){
         this.getOrders()
+        this.getMetrics()
     },
     methods:{
         goToOrders(){
@@ -89,6 +157,15 @@ export default {
                 this.loading = false
             })
         },
+        getMetrics(){
+            axios.get(`${baseUrl}admin/order/metrics`)
+            .then(res=>{
+              console.log(res)
+              this.metrics = res?.data?.data?.metrics[0]
+            })
+            .catch(err =>{
+            })
+        }
     }
 };
 </script>
@@ -123,7 +200,7 @@ export default {
   margin-top: 30px;
   padding: 20px;
   border-radius: 10px;
-  width: 300px;
+  /* width: 300px; */
 }
 .calendar-icon {
   color: #32b308;

@@ -105,7 +105,7 @@
             <td>{{order.orderTag}}</td>
             <td>{{order.user.name}}</td>
             <td>{{order.user.institute}}</td>
-            <td>{{order.created_at.split('T')[0]}}</td>
+            <td>{{order.created_at?.split('T')[0]}}</td>
             <td><p style="margin-top:15px" @click="viewOrder(order.id)"><span class="view-btn">View</span></p></td>
         </tr>
         </table>
@@ -150,6 +150,7 @@ export default {
             axios.get(`${baseUrl}admin/order?pageSize=3&page=1`)
             .then(res=>{
                 this.orders = res.data.data.orders
+                console.log(this.orders)
                 this.loading = false
             })
             .catch(err =>{

@@ -38,7 +38,7 @@
             <td>{{order.user.name}}</td>
             <td>{{order?.user?.email}}</td>
             <td>{{order.user.institute}}</td>
-            <td>{{order.created_at.split('T')[0]}}</td>
+            <td>{{order.created_at?.split('T')[0]}}</td>
             <td><p style="margin-top:15px" @click="viewOrder(order.id)"><span class="view-btn">View</span></p></td>
         </tr>
         </table>

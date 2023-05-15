@@ -153,6 +153,7 @@
             <h3 class="mt-4">Sample Information</h3>
             <table class="table mt-4">
               <tr class="table-header-row">
+                <th>S/N</th>
                 <th>Sample</th>
                 <th>Sample Type</th>
                 <th>Purification Method</th>
@@ -160,7 +161,8 @@
                 <th>Lab Stage</th>
                 <th></th>
               </tr>
-              <tr v-for="sampleInfo in sampleInfos" :key="sampleInfo.id">
+              <tr v-for="(sampleInfo, i) in sampleInfos" :key="sampleInfo.id">
+                <td>{{i+1}}</td>
                 <td>{{sampleInfo.sampleName}}</td>
                 <td>{{sampleInfo.sampleType}}</td>
                 <td>{{sampleInfo.purificationMethod}}</td>
@@ -184,12 +186,14 @@
           <div class="overflow-auto order-table">
             <table class="table mt-4">
               <tr class="table-header-row">
+                <th>S/N</th>
                 <th>Forward</th>
                 <th>Reverse</th>
                 <th>Sequencing Direction</th>
                 <th>Internal Sequencing Primer Name</th>
               </tr>
-              <tr v-for="sampleInfo in sampleInfos" :key="sampleInfo.id">
+              <tr v-for="(sampleInfo, i) in sampleInfos" :key="sampleInfo.id">
+                <td>{{i+1}}</td>
                 <td>{{sampleInfo?.forwardPrimer}}</td>
                 <td><p style="margin-top: 15px">{{sampleInfo?.reversePrimer}}</p></td>
                 <td>{{sampleInfo?.sequencingDirection}}</td>
@@ -202,10 +206,12 @@
             <h3 class="mt-4">Inqaba Primer</h3>
             <table class="table mt-4">
               <tr class="table-header-row">
+                <th>S/N</th>
                 <th>Name</th>
                 <th>Sequence</th>
               </tr>
-              <tr v-for="primer in inqabaPrimers" :key="primer.id">
+              <tr v-for="(primer, i) in inqabaPrimers" :key="primer.id">
+                <td>{{i+1}}</td>
                 <td>{{primer.name}}</td>
                 <td><p style="margin-top: 15px">{{primer.sequence}}</p></td>
               </tr>
@@ -216,11 +222,13 @@
             <h3 class="mt-4">Personal Primer</h3>
             <table class="table mt-4">
               <tr class="table-header-row">
+                <th>S/N</th>
                 <th>Name</th>
                 <th>Sequence</th>
                 <th>Concentration</th>
               </tr>
-              <tr v-for="primer in personalPrimers" :key="primer.id">
+              <tr v-for="(primer, i) in personalPrimers" :key="primer.id">
+                <td>{{i+1}}</td>
                 <td>{{primer.name}}</td>
                 <td>{{primer.sequence}}</td>
                 <td><p style="margin-top: 15px">{{primer.concentration}}</p></td>
@@ -234,10 +242,12 @@
             <h3 class="mt-4">Other Information</h3>
             <table class="table mt-4">
               <tr class="table-header-row">
+                <th>S/N</th>
                 <th>Amplicon Insert Size</th>
                 <th>Annealing Temperature</th>
               </tr>
-              <tr v-for="sampleInfo in sampleInfos" :key="sampleInfo.id">
+              <tr v-for="(sampleInfo, i) in sampleInfos" :key="sampleInfo.id">
+                <td>{{i+1}}</td>
                 <td>{{sampleInfo.ampliconSize}}</td>
                 <td><p style="margin-top: 15px">{{sampleInfo.annealingTemperature}}</p></td>
               </tr>

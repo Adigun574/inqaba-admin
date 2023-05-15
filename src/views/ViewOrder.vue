@@ -186,12 +186,14 @@
               <tr class="table-header-row">
                 <th>Forward</th>
                 <th>Reverse</th>
+                <th>Sequencing Direction</th>
                 <th>Internal Sequencing Primer Name</th>
               </tr>
               <tr v-for="sampleInfo in sampleInfos" :key="sampleInfo.id">
-                <td>{{sampleInfo.forwardPrimer}}</td>
-                <td><p style="margin-top: 15px">{{sampleInfo.reversePrimer}}</p></td>
-                <td>{{sampleInfo.internalSequencingPrimer}}</td>
+                <td>{{sampleInfo?.forwardPrimer}}</td>
+                <td><p style="margin-top: 15px">{{sampleInfo?.reversePrimer}}</p></td>
+                <td>{{sampleInfo?.sequencingDirection}}</td>
+                <td>{{sampleInfo?.internalSequencingPrimer}}</td>
               </tr>
             </table>
           </div>

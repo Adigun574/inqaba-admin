@@ -70,7 +70,25 @@
       <div class="col-sm-4">
         <div class="order-details-card">
           <p class="institute-title">Collection of Sample</p>
-          <p class="institute-value text-capitalize">{{ orderDetails?.sampleCollection }}</p>
+          <p class="institute-value text-capitalize">{{ orderDetails?.sampleCollection | removeUnderscore }}</p>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="order-details-card">
+          <p class="institute-title">Email</p>
+          <p class="institute-value">{{ orderDetails?.user?.email }}</p>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="order-details-card">
+          <p class="institute-title">Phone Number</p>
+          <p class="institute-value text-capitalize">{{ orderDetails?.user?.phone }}</p>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="order-details-card">
+          <p class="institute-title">Contact Person</p>
+          <p class="institute-value text-capitalize">{{ orderDetails?.collectionContactPersonPhone || '--' }}</p>
         </div>
       </div>
     </div>
